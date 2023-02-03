@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+<div class="custom-container">
+  <div class="custom-inner-container">
+      <div>
+          <h2 style="text-align: center;">Reset Password</h2>
+      </div>
+      <div class="form-container mt-5">
+          <form class="form-box mt-4" [formGroup]="resetForm">
+            <mat-form-field class="w-100 m-0" appearance="fill">
+              <mat-label>Password</mat-label>
+              <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="password"  required/>
+              <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error
+                  *ngIf="
+                  resetForm.get('password')?.touched &&
+                  resetForm.get('password').errors?.required
+                  "
+                >
+                  This field is required
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                  resetForm.get('password')?.touched &&
+                  resetForm.get('password').errors?.pattern
+                  "
+                >
+                  Invalid password
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100 m-0" appearance="fill">
+              <mat-label>Confirm password</mat-label>
+              <input [type]="hideConfirmPassword ? 'password' : 'text'" matInput placeholder="Confirm password" formControlName="confirmPassword"  required/>
+              <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error
+                  *ngIf="
+                  resetForm.get('confirmPassword')?.touched &&
+                  resetForm.get('confirmPassword').errors?.required
+                  "
+                >
+                  This field is required
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                  resetForm.get('confirmPassword')?.touched &&
+                  resetForm.get('confirmPassword').errors?.pattern
+                  "
+                >
+                  Invalid confirm Password
+                </mat-error>
+            </mat-form-field>
+            <div class="btn-container text-center mt-4">
+              <button class="btn btn-primary" [class.disable-btn]="resetForm.invalid" mat-raised-button (click)="onSubmit()">
+                Reset
+              </button>
+            </div>
+          </form>
+          
+        </div>
+  </div>
+  
+</div>

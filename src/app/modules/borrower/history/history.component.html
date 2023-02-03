@@ -1,0 +1,15 @@
+<div class="main-container">
+    <app-breadcrumbs [breadcrumbsList]="breadcrumbsList"></app-breadcrumbs>
+<div class="inner-container">
+        <p class="sub-heading">Contacted {{name}}</p>
+        <div class="container" *ngIf="totalRows!=0">
+            <app-history-card [cardData] = "historyData" [messageData]="messageHistory"></app-history-card>
+            <mat-paginator 
+                [pageSizeOptions]="pageSizeOptions" 
+                [length]="totalRows"
+                [pageSize]="pageSize" 
+                ></mat-paginator>
+        </div>
+        <p *ngIf="!totalRows || totalRows==0 || historyLength==null">No chats found</p>
+    </div>
+</div>

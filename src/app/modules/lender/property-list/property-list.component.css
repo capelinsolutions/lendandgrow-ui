@@ -1,0 +1,42 @@
+@import "~../../../../variables";
+.head-section {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.head-section-right {
+    flex-wrap: wrap;
+}
+/* 
+.body-section{
+} */
+.upload{
+    /* color: green; */
+    text-align: right;
+}
+.uploadproperty{
+    background-color: $primary-color;
+}
+.uploadbutton{
+    margin-right: 20px;
+}
+.pencil-icon {
+    height: 15px;
+}
+
+.borrower-list-card-section {
+    padding-top: 40px;
+
+}
+.lower-profile-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+@media screen and (max-width: 764px) {
+    .upload{
+        /* color: green; */
+        text-align: center;
+    }
+  }

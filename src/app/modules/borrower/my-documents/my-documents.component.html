@@ -1,0 +1,63 @@
+<div class="main-container">
+  <app-breadcrumbs [breadcrumbsList]="breadcrumbsList"></app-breadcrumbs>
+  <div class="inner-container">
+    <section class="header" fxLayout="row" fxLayoutAlign="space-between center">
+      <h1>My Documents</h1>
+      <!-- <label class="file-input-label shadow">
+        <input
+          type="file"
+          (input)="uploadDocument($event)"
+          accept="image/png, image/jpg, image/jpeg"
+          multiple
+        />
+        <mat-icon>upload</mat-icon>
+      </label> -->
+    </section>
+    <form class="form-container mt-3" fxLayout="row" fxLayoutAlign="end center" (ngSubmit)="searchBytitle()" [formGroup]="propertyForm">
+      <mat-form-field class="search-field mr-0" appearance="fill">
+        <mat-label>Search</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Enter property name."
+          formControlName="title"
+        />
+        <mat-icon matSuffix (click)="searchBytitle()">search</mat-icon>
+      </mat-form-field>
+    </form>
+    <section class="folders-list-container">
+      <h2>Property Folders</h2>
+      <ul class="folders-list py-3" *ngIf="dataSourceFolders?.length > 0">
+        <li
+          *ngFor="let folder of dataSourceFolders"
+          class="list-item shadow"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          [routerLink]="['/borrower/folder/', folder.propertyId ? folder.propertyId : '' ]"
+        >
+          <h3>{{ folder.title }}</h3>
+          <mat-icon class="primary-color">folder</mat-icon>
+        </li>
+      </ul>
+      <p *ngIf="dataSourceFolders?.length==0 || !dataSourceFolders">No Properties Available</p>
+      <mat-paginator 
+      #paginatorForFolders="matPaginator" [length]="length ? length : '0' " 
+      [pageSize]="pageSizeForFolders" 
+      [pageSizeOptions]="pageSizeOptionsForFolders" 
+      (page)="handlePageForFolders($event)">
+      </mat-paginator>
+    </section>
+
+    <!-- <section class="files-list-container mt-5">
+      <h2>Files</h2>
+      <mat-selection-list #shoes [multiple]="false" *ngIf="dataSourceDocuments.length > 0" (selectionChange)="onClickDocument($event)">
+        <mat-list-option *ngFor="let document of dataSourceDocuments" [value]="document">
+            <mat-icon class="primary-color">insert_drive_file</mat-icon>
+            <p class="primary-color">{{ document.title }}</p>
+        </mat-list-option>
+      </mat-selection-list>
+      <mat-paginator #paginator [length]="documentsList.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="handlePage($event)">
+      </mat-paginator>
+    </section> -->
+  </div>
+</div>

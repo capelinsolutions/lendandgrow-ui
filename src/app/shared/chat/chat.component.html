@@ -1,0 +1,41 @@
+<div class="main">
+  <div class="container">
+    <section class="chat">
+      <div class="header-chat">
+        <img [src]="imageUrl" class="chat-image" *ngIf="imageUrl"/>
+        <i class="icon fa fa-user-o" aria-hidden="true" *ngIf="!imageUrl"></i>
+        <p class="name">{{ chatName }}</p>
+      </div>
+  
+      <div #scrollMe [scrollTop]="scrollMe.scrollHeight" class="messages-chat">
+  
+       <div class="chat-box" *ngFor="let data of messageList; let i = index;"> 
+        <div *ngIf="userId != data?.senderId" class="message">
+          <div class="photo" style="background-image: url({{imageUrl}})">
+            <div class="online"></div>
+          </div>
+          <p class="text"> {{ data?.content}} </p>
+        </div>
+        <p *ngIf="userId != data?.senderId" class="time"> {{ data?.sendAt }}</p>
+  
+        <div *ngIf="userId == data?.senderId" class="message text-only">
+          <div class="response">
+            <p class="text"> {{ data?.content }}</p>
+          </div>
+        </div>
+        <p *ngIf="userId == data?.senderId" class="response-time time"> {{ data?.sendAt }}</p>
+        </div>
+      </div>
+  
+      <div class="footer-chat">
+        <!-- <i class="icon fa fa-smile-o clickable" style="font-size:25pt;" aria-hidden="true"></i> -->
+        <input type="text" name="message" [(ngModel)]="typedMessage"
+         class="write-message" (keyup.enter)="sendMessage()" placeholder="Type your message here">
+        <i class="icon send fa fa-paper-plane-o clickable" (click)="sendMessage()" aria-hidden="true"></i>
+      </div>
+  
+  </section>
+  </div>
+</div>
+
+

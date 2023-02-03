@@ -1,0 +1,116 @@
+@import "~../../../../variables";
+
+.signup-card-box {
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+.signup-image {
+  height: 100px;
+  width: 100px;
+}
+
+.signup-card-image-box {
+  border: 0.2px solid #cecccc;
+  border-radius: 10%;
+  padding: 20px 40px 20px 40px;
+}
+.signup-card-image-box:hover {
+  background-color: #277cc1;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* AUTH CSS ALSO IN LOGIN*/
+.auth-input {
+  border-radius: 0% !important;
+  border: 0px;
+  border-bottom: 1px solid #277cc1 !important;
+}
+
+.auth-input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #277cc1;
+  opacity: 1; /* Firefox */
+}
+
+.input-container {
+  color: #277cc1;
+  padding: 0px 0px 5% 0px;
+}
+
+.auth-submit-btn {
+  background-color: #277cc1;
+  margin: auto;
+  display: flex;
+  color: #fff;
+  padding-left: 5%;
+  padding-right: 5%;
+  opacity: 1;
+}
+
+.signup-container {
+  .options-container {
+    .option {
+      width: 48%;
+      margin: 0 1%;
+      position: relative;
+
+      .content {
+        position: relative;
+        z-index: 2;
+        color: $primary-color;
+      }
+      .overlay::before {
+        clear: both;
+        transition: 0.2s;
+        display: block;
+        content: "";
+        height: 1%;
+        background-color: $primary-color;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        border-radius: 5px 5px 0px 0px;
+      }
+    }
+    .option-1 {
+      .overlay-bg {
+        background-image: url("^assets/images/icons/borrower-blue.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 200px;
+        position: relative;
+        z-index: 1;
+      }
+    }
+    .option-2 {
+      .overlay-bg {
+        background-image: url("^assets/images/icons/lender-blue.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 200px;
+        position: relative;
+        z-index: 1;
+      }
+    }
+    .option:hover {
+      .overlay::before {
+        height: 100%;
+      }
+      .content {
+        color: #fff;
+      }
+    }
+    .option-1:hover {
+      .overlay-bg {
+        background-image: url("^assets/images/icons/borrower-white.svg");
+      }
+    }
+    .option-2:hover {
+      .overlay-bg {
+        background-image: url("^assets/images/icons/lender-white.svg");
+      }
+    }
+  }
+}

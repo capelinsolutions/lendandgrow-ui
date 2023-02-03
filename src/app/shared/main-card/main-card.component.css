@@ -1,0 +1,48 @@
+h5, h4, h3, h2, h1, span {
+    color: #05508D !important;
+}
+
+.card {
+    padding-top: 20px;
+    margin-bottom: 40px;
+    background-color: #fff;
+    border: 0.3px solid #00000029;
+    border-radius: 50px;
+    height: 300px;
+}
+.card-header-area {
+    height: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.verify-image {
+    height: 30px;
+    width: 30px;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.card-body {
+    margin: 0 auto;
+}
+
+.card-image {
+    height: 150px !important;
+    width: 150px !important;
+    border-radius: 50%;
+    background-color: #ccc;
+    object-fit: cover;
+    overflow: hidden;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 400px) {
+    .history-message-image {
+        height: 30px;
+        width: 30px;
+    }
+  }

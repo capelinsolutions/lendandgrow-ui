@@ -1,0 +1,69 @@
+@import "~../../../../../../variables.scss";
+
+.lower-profile-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.sideprofile{
+    margin-top: 60px;
+}
+p {
+    font-size: 20px;
+    color: $primary-color;
+}
+.success-link {
+    color: $green-color;
+}
+
+a{
+    font-size: 20px;
+}
+.pencil-icon {
+    height: 15px;
+}
+
+.file-input-label {
+    border-radius: 50%;
+    display: inline-block;
+    padding: 100px 100px;
+    cursor: pointer;
+    color: $green-color;
+    input[type="file"] {
+      display: none;
+    }
+    mat-icon {
+      font-size: 35px;
+      height: 55px;
+      width: 55px;
+    }
+}
+
+.profile-image {
+    height: 250px;
+    max-width: 250px;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.lender-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 50%;
+    
+}
+
+.image-background{
+    display: inline-block;
+    padding: 31px 100px;
+}
+
+@media screen and (max-width: 450px) {
+    .profile-image {
+        height: 250px;
+        width: 200px;
+        border-radius: 10%;
+        margin-left: -55px;
+    }
+  }

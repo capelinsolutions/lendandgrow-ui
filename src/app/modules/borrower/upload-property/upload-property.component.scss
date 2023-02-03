@@ -1,0 +1,119 @@
+@import "~../../../../variables";
+.main-container {
+  .inner-container {
+    .list-container {
+      .list {
+        padding-left: 50px !important;
+        padding-right: 10px !important;
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap;
+        .list-item {
+          flex: 0 0 auto;
+          width: 200px;
+          height: 200px;
+          cursor: pointer;
+          margin: 5px 10px;
+          border-radius: 10%;
+          mat-icon{
+            font-size: 60px;
+            height: 60px;
+            width: 60px;
+          }
+        }
+      }
+    }
+    form{
+        padding-left: 50px !important;
+        padding-right: 10px !important;
+    }
+  }
+}
+
+
+@media screen and (max-width: 764px) {
+  .list-container {
+    .list {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+      display: flex;
+      flex-wrap: wrap;
+      .list-item {
+        //width: 48% !important;
+        //height: 100px !important;
+        margin: 5px 1% !important;
+        mat-icon{
+          font-size: 30px !important;
+         height: 30px !important;
+        width: 30px !important;
+        }
+      }
+    }
+  }
+}
+
+
+h5, h4, h3, h2, h1 {
+    color: #05508D !important;
+}
+
+body {
+  margin: 0;
+  }
+  .demo-full-width {
+  width: 100%;
+  }
+  .margin-top {
+  margin-top: 15px;
+  }
+  .margin-left {
+  margin-left: 10px;
+  }
+  .radio-label-padding {
+  padding-right: 10px;
+  color: grey;
+  }
+  .form {
+  margin-left: 10px;
+  border: 2px solid lightgray;
+  width: 600px;
+  padding-left: 5px;
+  margin-top: 10px;
+  }
+  .custom-file-upload {
+    border: 1px solid #ccc;
+    margin-top: -5px;
+    margin-left: 42px;
+    display: inline-block;
+    padding: 6px 44px;
+    cursor: pointer;
+    background-color: $primary-color;
+}
+input[type="file"] {
+  display: none;
+}
+.upd{
+  margin-top: -20px;
+}
+.propImage {
+  width: 50%;
+  height: 30px !important;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 15%;
+  margin-top: -40px;
+  background-color: transparent;
+}
+.images{
+  margin-top: 7px;
+  text-align: left;
+}
+.example-full-width .mat-form-field-underline {
+  display: none;
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  height: 0 !important;
+}
+::ng-deep .example-full-width.profile .mat-form-field-underline {
+  display: none;
+}

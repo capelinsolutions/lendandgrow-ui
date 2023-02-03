@@ -1,0 +1,52 @@
+@import "~../../../../variables";
+.doc{
+    border: none;
+    background-color: transparent;
+    height: 20px;
+}
+.doc :hover{
+    color: $green-color;
+}
+h3:hover{
+    color: $green-color !important;
+}
+.download{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    text-align: right;
+    margin-right: 5px;
+}
+.close{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    text-align: right;
+}
+.close:hover,.download :hover{
+    color: $primary-color;
+}
+.buttondiv{
+    text-align: right;
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 34px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}

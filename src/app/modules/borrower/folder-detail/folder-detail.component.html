@@ -1,0 +1,59 @@
+<div class="main-container">
+    <app-breadcrumbs [breadcrumbsList]="breadcrumbsList"></app-breadcrumbs>
+    <div class="inner-container">
+      <section class="header" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+        <h1 style="margin-top: 35px;">{{folderName}}
+            <!-- <img src="assets/images/avatar-plus.svg" alt="" style="height: 50px; cursor: pointer;" (click)="openShareFolderModal()"> -->
+        </h1>
+        <label class="file-input-label shadow mx-1 btn btn-primary mx-1" style="margin-left: 15px;">
+          <!-- <input
+            type="file"
+            (input)="uploadDocument($event)"
+            accept="image/png, image/jpg, image/jpeg"
+            multiple
+          /> -->
+          <input
+          type="file"
+          (input)="uploadDocument($event)"
+          accept="application/pdf,application/vnd.ms-excel"
+          multiple
+        />
+        Upload Document
+          <mat-icon>upload</mat-icon>
+        </label>
+      </section>
+      <!-- <form class="form-container mt-3" fxLayout="row" fxLayoutAlign="end center">
+        <mat-form-field class="search-field mr-0" appearance="fill">
+          <mat-label>Search</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Enter a city, county or zip code to begin."
+          />
+          <mat-icon matSuffix (click)="search()">search</mat-icon>
+        </mat-form-field>
+      </form> -->
+      <section class="files-list-container mt-5">
+        <h2>Files   </h2>
+        <mat-selection-list #shoes [multiple]="false" *ngIf="dataSourceDocuments.length > 0" (selectionChange)="onClickDocument($event)">
+          <mat-list-option *ngFor="let document of docLinks;let i = index" [value]="document">
+              <mat-icon style="color: red;">picture_as_pdf</mat-icon>
+              <p class="primary-color">{{ document | urlSetting}}</p>
+          </mat-list-option>
+        </mat-selection-list>
+        <p *ngIf="docLinks.length == 0 || !docLinks" >No Property Documents Available</p>
+        <div class="btn-container text-center mt-4">
+          <button class="btn btn-primary mx-1" mat-raised-button (click)="onClickShare()">
+            Share Files
+          </button>
+          <button class="btn btn-primary mx-1" mat-raised-button (click)="onClickEditDocument()">
+            Edit Files Access
+          </button>
+        </div>
+        <mat-paginator #paginator [length]="documentsList.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="handlePage($event)" *ngIf="valueName.length > 0">
+        </mat-paginator>
+        
+      </section>
+    </div>
+  </div>
+  

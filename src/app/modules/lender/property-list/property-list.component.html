@@ -1,0 +1,61 @@
+<div class="main-container">
+    <app-breadcrumbs [breadcrumbsList]="breadcrumbsList"></app-breadcrumbs>
+    <div class="inner-container">
+        <div class="lender-list container-fluid">
+            <div class="head-section row">
+                <h1 class="d.none">Property List</h1>
+                <div class="head-section-right">
+                    <form class="form-container" fxLayout="row" fxLayoutAlign="end center" [formGroup]="propertyForm" (ngSubmit)="search()">
+                        <mat-form-field class="search-field mr-4" fxFlex="35" appearance="fill">
+                            <mat-label>Area</mat-label>
+                            <input type="text" formControlName="city" matInput placeholder="Search by Area." />
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" fxFlex="20" class="mr-2">
+                            <mat-label>Address</mat-label>
+                            <input type="text" matInput formControlName="address">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" fxFlex="20" class="mr-4">
+                            <mat-label>Price Start</mat-label>
+                            <input matInput type="text" formControlName="priceStart">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" fxFlex="20" class="mr-4">
+                            <mat-label>Price End</mat-label>
+                            <input matInput type="text" formControlName="priceEnd">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" fxFlex="20" class="mr-2">
+                            <mat-label>Type of Property</mat-label>
+                            <mat-select formControlName="propertyType">
+                              <mat-option *ngFor="let prop of propertyTypes; let i = index" [value]="prop.propertyTypeId">
+                                  {{prop.title}}</mat-option>
+                          </mat-select>
+                          </mat-form-field>
+                        <button type="submit" style="background-color: transparent;border: none;"><mat-icon matSuffix>search</mat-icon></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="body-section">
+            <div class="lower-profile-section">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 py-4 px-2">
+                        <h2>Suggested Properties</h2>
+                    </div>                 
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 py-4 px-2" *ngFor="let data of Data">
+                        <app-property-card [deal]="data"></app-property-card>
+                    </div>
+                    <p *ngIf="Data?.length == 0" >No Properties Available</p>
+                    <p *ngIf="!Data" >No Properties Available</p>
+                </div>
+            <mat-paginator 
+            [pageSizeOptions]="pageSizeOptions" 
+            [pageSize]="pageSize ? pageSize: '0'" 
+            (page)="handlePageEvent($event)"
+            [length]="length? length: '0'"
+            [pageIndex]="Data?.pageNo ? Data.pageNo: '0'"
+            ></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-hardmoney-dev-115412-authRole",
+      "UnauthRoleArn": "arn:aws:iam::228618529805:role/amplify-hardmoney-dev-115412-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::228618529805:role/amplify-hardmoney-dev-115412-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-hardmoney-dev-115412-deployment",
+      "UnauthRoleName": "amplify-hardmoney-dev-115412-unauthRole",
+      "StackName": "amplify-hardmoney-dev-115412",
+      "StackId": "arn:aws:cloudformation:us-east-1:228618529805:stack/amplify-hardmoney-dev-115412/ba2bd4c0-a8e3-11ec-bf8f-12083211e679",
+      "AmplifyAppId": "dx3osqmxgbu8n"
+    },
+    "categories": {
+      "auth": {
+        "hardmoney32e0359f": {}
+      }
+    }
+  }
+}

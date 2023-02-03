@@ -1,0 +1,75 @@
+@import "~../../../../variables";
+.main-container {
+  .inner-container {
+    .file-input-label {
+      border-radius: 50%;
+      display: inline-block;
+      padding: 6px 10px;
+      cursor: pointer;
+      color: $green-color;
+      input[type="file"] {
+        display: none;
+      }
+      mat-icon {
+        font-size: 35px;
+        height: 35px;
+        width: 35px;
+      }
+    }
+    .folders-list-container {
+      .folders-list {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap;
+        .list-item {
+          flex: 0 0 auto;
+          width: 195px;
+          height: 200px;
+          cursor: pointer;
+          margin: 5px 10px 30px;
+          mat-icon{
+            font-size: 60px;
+            height: 60px;
+            width: 60px;
+          }
+        }
+      }
+    }
+    .files-list-container{
+      .mat-selection-list{
+        ::ng-deep.mat-list-text{
+          flex-direction: row !important;
+        }
+      }
+    }
+  }
+}
+
+.search-field {
+  max-width: 500px;
+  mat-icon {
+    cursor: pointer;
+  }
+}
+
+
+@media screen and (max-width: 764px) {
+  .folders-list-container {
+    .folders-list {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+      .list-item {
+        width: 48% !important;
+        height: 100px !important;
+        margin: 5px 1% !important;
+        mat-icon{
+          font-size: 30px !important;
+          height: 30px !important;
+          width: 30px !important;
+        }
+      }
+    }
+  }
+}

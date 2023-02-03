@@ -1,0 +1,57 @@
+<div class="main-container" >
+    <app-breadcrumbs [breadcrumbsList]="breadcrumbsList"></app-breadcrumbs>
+    <div class="inner-container">
+        <div class="upper-profile-section">
+            <div class="row">
+                <div class="col-xs-12 col-lg-6 sideprofile">
+                    <h2>{{borrowerProfile?.name}}</h2>
+                    <br />
+                    <p><strong>Contact Number:</strong> <br/> {{borrowerProfile?.contact ? borrowerProfile?.contact : '03158601768'}}</p>
+                    <br />
+                    <p><strong>Address:</strong> <br /> {{borrowerProfile?.address ? borrowerProfile?.address : 'PECHS'}}</p>
+                    <br />
+                    <p><strong>Email Address: </strong><br /> {{borrowerProfile?.email ? borrowerProfile?.email : 'a@a.com'}}</p>
+                    <br />
+                    <button class="btn btn-primary py-2 px-4" (click)="openBorrowerEditProfileDialog()">Edit Profile</button>
+                </div>
+                <!-- <div class="col-xs-12 col-lg-6 text-center">
+                    <div>
+                        <label class="file-input-label shadow">
+                            <img src="{{imageURL ? imageURL : '../../../../assets/images/icons/pencil.svg'}}"/>
+                            <input type="file" accept="image/png, image/jpg, image/jpeg" />
+                            <mat-icon>upload</mat-icon>
+                        </label>
+                        <p class="pt-2">Upload Picture</p>
+                    </div>
+                </div> -->
+
+                <div class="col-xs-12 col-lg-6 text-center">
+                    <div class="image-background">
+                        <div class="profile-image">
+                            <img [src]="imageURL ? imageURL: '../../../assets/images/icons/usericon.png'" class="lender-card-image" alt="Profile Pic">
+                            <label class="custom-file-upload mx-1 btn btn-primary mx-1">
+                                <input type="file" (change)="onFileSelected($event)" accept="image/png, image/jpg, image/jpeg"/>
+                                Upload Picture
+                              </label>
+                            
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="lower-profile-section">
+            <h2 class="py-5">Properties</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 py-4 px-2" *ngFor="let property of sortedList">
+                    <app-property-card [deal]="property"></app-property-card>
+                </div>
+                <p *ngIf="borrowerPropertyList.length==0 || borrowerPropertyList==null">No Properties Available</p>
+            </div>
+            <div style="text-align: center;" *ngIf="borrowerPropertyList.length>3">
+                <button class="btn btn-primary py-2 px-4" routerLink="property">See More</button>
+            </div>
+            
+        </div>
+    </div>
+</div>

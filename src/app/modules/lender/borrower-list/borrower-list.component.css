@@ -1,0 +1,18 @@
+.head-section {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.head-section-right {
+    flex-wrap: wrap;
+}
+
+.body-section{
+    padding-top: 60px;
+}
+
+.borrower-list-card-section {
+    padding-top: 40px;
+}

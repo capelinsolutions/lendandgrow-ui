@@ -1,0 +1,33 @@
+<form class="form-container text-center">
+  <img src="assets/images/avatar-plus.svg" alt="add-avatar" />
+  <h2 class="mb-5 text-center">Share Folder</h2>
+  <mat-form-field class="w-100 m-0 mb-3" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" [formControl]="email" />
+    <mat-error *ngIf="email?.touched && email.errors?.required">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="email?.touched && email.errors?.pattern">
+      Invalid email address
+    </mat-error>
+  </mat-form-field>
+  <div class="privacy-container my-3" fxLayout="row" fxLayoutAlign="end center" >
+    <h4 class="mb-0"><strong>Privacy</strong></h4>
+    <select class="form-select privacy-select mx-2" aria-label="Default select example" [(ngModel)]="privacyType" name="privacyType">
+      <option value="1" selected>Read only</option>
+      <option value="2">Downloadable</option>
+    </select>
+  </div>
+  <br>
+  <div class="btn-container text-center mt-4">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      mat-raised-button
+      (click)="submit($event)"
+      [class.disable-btn]="email.invalid"
+    >
+      Send
+    </button>
+  </div>
+</form>

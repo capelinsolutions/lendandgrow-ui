@@ -1,0 +1,215 @@
+<div class="main-container">
+    <app-breadcrumbs [breadcrumbsList]="breadcrumbsList"></app-breadcrumbs>
+    <div class="inner-container">
+        <form [formGroup]="propertyInfo" class="form-container">
+            <ng-template matStepLabel>Personal Information</ng-template>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Property Name</mat-label>
+              <input type="text" matInput formControlName="propertyName" placeholder="Property Name" required />
+              <mat-error *ngIf="
+                  propertyInfo.get('propertyName')?.touched &&
+                  propertyInfo.get('propertyName').errors?.required
+                ">
+                This field is required
+              </mat-error>
+              <mat-error *ngIf="
+                  propertyInfo.get('propertyName')?.touched &&
+                    propertyInfo.get('propertyName').errors?.minlength;
+                ">
+                Minimum
+                {{ propertyInfo.get("propertyName").errors?.minlength?.requiredLength }}
+                characters are required
+              </mat-error>
+              <ng-template #propertyNameMaxLength>
+                <mat-error *ngIf="
+                    propertyInfo.get('propertyName')?.touched &&
+                      propertyInfo.get('propertyName').errors?.maxlength;
+                  ">
+                  Maximum
+                  {{
+                  propertyInfo.get("propertyName").errors?.maxlength?.requiredLength
+                  }}
+                  characters are required
+                </mat-error>
+              </ng-template>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Address</mat-label>
+              <input type="text" matInput formControlName="address" placeholder="Address" required />
+              <mat-error *ngIf="
+                  propertyInfo.get('address')?.touched &&
+                  propertyInfo.get('address').errors?.required
+                ">
+                This field is required
+              </mat-error>
+              <mat-error *ngIf="
+                  propertyInfo.get('address')?.touched &&
+                    propertyInfo.get('address').errors?.minlength;
+                  else addressMaxLength
+                ">
+                Minimum
+                {{
+                propertyInfo.get("address").errors?.minlength?.requiredLength
+                }}
+                characters are required
+              </mat-error>
+              <ng-template #addressMaxLength>
+                <mat-error *ngIf="
+                    propertyInfo.get('address')?.touched &&
+                      propertyInfo.get('address').errors?.maxlength;
+                  ">
+                  Maximum
+                  {{
+                  propertyInfo.get("address").errors?.maxlength
+                  ?.requiredLength
+                  }}
+                  characters are required
+                </mat-error>
+              </ng-template>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Price</mat-label>
+                <input type="text" matInput formControlName="price" placeholder="Price" required />
+                <mat-error *ngIf="
+                    propertyInfo.get('price')?.touched &&
+                    propertyInfo.get('price').errors?.required
+                  ">
+                  This field is required
+                </mat-error>
+                <mat-error *ngIf="
+                    propertyInfo.get('price')?.touched &&
+                      propertyInfo.get('price').errors?.minlength;
+                    else priceMaxLength
+                  ">
+                  Minimum
+                  {{
+                  propertyInfo.get("price").errors?.minlength?.requiredLength
+                  }}
+                  characters are required
+                </mat-error>
+                <ng-template #priceMaxLength>
+                  <mat-error *ngIf="
+                      propertyInfo.get('price')?.touched &&
+                        propertyInfo.get('price').errors?.maxlength;
+                        else pricePattern
+                    ">
+                    Maximum
+                    {{
+                    propertyInfo.get("price").errors?.maxlength
+                    ?.requiredLength
+                    }}
+                    characters are required
+                  </mat-error>
+                </ng-template>
+                <ng-template #pricePattern>
+                  <mat-error *ngIf="
+                  propertyInfo.get('price')?.touched &&
+                  propertyInfo.get('price').errors?.pattern
+                          ">
+                    This field can only contain Numbers
+                  </mat-error>
+                </ng-template>
+              </mat-form-field>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>description</mat-label>
+                <input type="text" matInput formControlName="description" placeholder="Description" required />
+                <mat-error *ngIf="
+                    propertyInfo.get('description')?.touched &&
+                    propertyInfo.get('description').errors?.required
+                  ">
+                  This field is required
+                </mat-error>
+                <mat-error *ngIf="
+                    propertyInfo.get('description')?.touched &&
+                      propertyInfo.get('description').errors?.minlength;
+                    else descriptionMaxLength
+                  ">
+                  Minimum
+                  {{
+                  propertyInfo.get("description").errors?.minlength?.requiredLength
+                  }}
+                  characters are required
+                </mat-error>
+                <ng-template #descriptionMaxLength>
+                  <mat-error *ngIf="
+                      propertyInfo.get('description')?.touched &&
+                        propertyInfo.get('description').errors?.maxlength;
+                    ">
+                    Maximum
+                    {{
+                    propertyInfo.get("description").errors?.maxlength
+                    ?.requiredLength
+                    }}
+                    characters are required
+                  </mat-error>
+                </ng-template>
+              </mat-form-field>
+              
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Area</mat-label>
+              <input type="text" matInput formControlName="area" placeholder="Area" required />
+              <mat-error *ngIf="
+                  propertyInfo.get('area')?.touched &&
+                  propertyInfo.get('area').errors?.required
+                ">
+                This field is required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width profile" appearance="legacy">
+                <div class="upd">
+                </div>
+                <div class="upd" hidden>
+                  <input class="upd" hidden="true" matInput/>
+                </div>
+                <div class="row">
+                  <div class="col-xs-6 col-lg-6 text-center">
+                    <label class="custom-file-upload btn btn-primary py-2 mx-1 ">
+                      <input  type="file" multiple (change)="getFileDetails($event)"  accept="image/png, image/jpg, image/jpeg"/>
+                      Upload Images
+                    </label>
+                  </div>
+                  <div class="col-xs-6 col-lg-6 text-center">
+                      <!-- <div class="row">
+                        <div class="col-xs-4 col-lg-4 text-center" *ngFor="let image of imagesArray">
+                          <img [src]='image' class="propImage"/>
+                        </div>
+                      </div> -->
+                          <p class="images">{{imagesArray.length > 0 ? imagesArray.length+' files selected': 'No files selected'}}</p>
+                  </div>
+                </div>
+              
+                
+                <mat-error *ngIf="
+                    propertyInfo.get('propertyImages')?.touched &&
+                    propertyInfo.get('propertyImages').errors?.required
+                  ">
+                  This field is required
+                </mat-error>
+              </mat-form-field>
+              <br>
+          </form>
+        <h3 class="py-5">Select Your Property Type</h3>
+        <div class="row" fxLayout="row" fxLayoutAlign="space-between center">
+            <section class="list-container col-lg-4 col-md-6 col-sm-12 py-4 px-2" *ngFor="let prop of propertyType" >
+                <div class="list py-3 " >
+                    <div
+                    (click)="onSelectProperty(prop?.propertyTypeId)"
+                     class="list-item shadow" 
+                     fxLayout="column" 
+                     fxLayoutAlign="center center"
+                     [ngStyle]="{'background': prop.propertyTypeId === currentId? 'transparent linear-gradient(132deg, #E2E2E2 0%, #05508D8C 56%, #05508DC7 100%) 0% 0% no-repeat padding-box' : ''}"
+                     >
+                        <p [ngStyle]="{'color': prop.propertyTypeId===currentId? 'white' : '#05508D'}">{{prop.title}}</p>
+                        <mat-icon class="primary-color" [ngStyle]="{'color': prop.id === currentId? 'white' : ''}">folder</mat-icon>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="form-container mt-5">
+            <form class="form-box mt-4">
+                <app-dynamic-form *ngIf="showForm" [fields]="propertyFormQA" (submit)="submit($event)" [propertyInfo]="propertyInfo">
+                </app-dynamic-form>
+            </form>
+        </div>
+    </div>
+</div>

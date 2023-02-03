@@ -1,0 +1,21 @@
+<!-- <div class="auth-bg">
+    <div class="container auth-container">
+        <h2 class="text-center py-4">Account</h2>
+        <div class="row">
+            <div class="col-6"><button [ngClass]="{ 'btn-active' : active == 1 }" class="btn-auth" (click)="handleAuthButtonClick(1)">Sign in</button></div>
+            <div class="col-6"><button [ngClass]="{ 'btn-active' : active == 2 }" class="btn-auth" (click)="handleAuthButtonClick(2)">Sign up</button></div>
+        </div>
+    </div>
+</div> -->
+
+<div class="auth-container">
+  <h2 class="text-center">Account</h2>
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Sign in">
+      <app-login></app-login>
+    </mat-tab>
+    <mat-tab label="Sign up">
+      <app-signup></app-signup>
+    </mat-tab>
+  </mat-tab-group>
+</div>

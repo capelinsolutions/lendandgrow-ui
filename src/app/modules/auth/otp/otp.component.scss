@@ -1,0 +1,13 @@
+@import "~../../../../variables";
+.otp-container{
+  p{
+    color: $primary-color;
+  }
+}
+::ng-deep.otp-input:focus-visible {
+    outline: 2px solid $primary-color !important;
+  }
+  ::ng-deep.otp-input {
+    color: $primary-color !important;
+    caret-color: $primary-color !important;
+  }

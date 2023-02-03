@@ -1,0 +1,29 @@
+@import "~../../../../../../variables.scss";
+
+.upper-profile{
+    // height: 400px;
+    align-items: center;
+}
+
+.profile-image {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.text-area {
+    padding-left: 30px;
+}
+
+p {
+    color: $primary-color;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 764px) {
+    .upper-profile{
+        // height: 400px;
+        display:block;
+    }
+  }

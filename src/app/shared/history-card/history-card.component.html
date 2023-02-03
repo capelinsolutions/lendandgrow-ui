@@ -1,0 +1,16 @@
+<div class="history-card container my-3" *ngFor="let message of historyData.chatHistory" [routerLink]="id" (click)="routeToChatScreen(message?.recipientId,message?.name)">
+    <div class="history-card-left">
+        <div class="history-card-image-container">
+            <img src="{{ message?.picture ? message?.picture : '../../../../../assets/images/icons/profile.svg'}}" class="history-card-image" alt="Profile Pic">
+        </div>
+        <div class="history-card-name px-2">
+            <h5>{{message.name}}</h5>
+            <p>{{message.lastMessageAt}}</p>
+        </div>
+    </div>
+    <div class="history-card-right">
+        <div class="history-card-message">
+            <img (click)="routeToChatScreen(message?.recipientId,message?.name)" src="../../../assets/images/icons/messageicon.svg" class="history-message-image" alt="">
+        </div>
+    </div>
+</div>

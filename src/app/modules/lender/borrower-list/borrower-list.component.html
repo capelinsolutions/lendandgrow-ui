@@ -1,0 +1,65 @@
+<div class="main-container">
+    <app-breadcrumbs [breadcrumbsList]="breadcrumbsList"></app-breadcrumbs>
+  
+      <div class="inner-container">
+  
+          <div class="lender-list container-fluid">
+              <div class="head-section row">
+                  <h1 class="d.none">Borrower List</h1>
+                  <div class="head-section-right">
+                      <form class="form-container" fxLayout="row" fxLayoutAlign="end center" [formGroup]="filterForm" (ngSubmit)="searchByName()">
+                          <mat-form-field class="search-field mr-4" fxFlex="35" appearance="fill">
+                            <mat-label>Name</mat-label>
+                            <input
+                              type="text"
+                              matInput
+                              placeholder="Search by Name."
+                              formControlName="name"
+                            />
+                          </mat-form-field>
+                          <mat-form-field appearance="fill" fxFlex="20" class="mr-4">
+                            <mat-label>State</mat-label>
+                            <input formControlName="state" matInput>
+                        </mat-form-field>
+                          <mat-form-field appearance="fill" fxFlex="20" class="mr-4" >
+                              <mat-label>City</mat-label>
+                              <input formControlName="city" matInput>
+                          </mat-form-field>
+                          <mat-form-field appearance="fill" fxFlex="20" class="mr-2">
+                              <mat-label>Type of Property</mat-label>
+                              <mat-select formControlName="propertyType">
+                                <mat-option *ngFor="let prop of propertyTypes; let i = index" [value]="prop.propertyTypeId">
+                                    {{prop.title}}</mat-option>
+                            </mat-select>
+                            </mat-form-field>
+                            <button type="submit" style="background-color: transparent;border: none;"><mat-icon matSuffix (click)="searchByName()">search</mat-icon></button>
+                      </form>
+                      
+                  </div>
+              </div>
+              <div class="body-section">
+                <h2>Suggested Borrowers</h2>
+                <div class="row borrower-list-card-section container-fluid">
+                    <div class="col-lg-4 col-md-6 col-sm-12 py-4 px-2" *ngFor="let borrower of borrowerData">
+                        <app-main-card [data]="borrower"></app-main-card>
+                    </div>
+                    <p *ngIf="!borrowerData">No Borrowers Found</p>
+                </div>
+                <div *ngIf="pageEvent">
+                    <h5>Page Change Event Properties</h5>
+                    <div>List length: {{pageEvent.length}}</div>
+                    <div>Page size: {{pageEvent.pageSize}}</div>
+                    <div>Page index: {{pageEvent.pageIndex}}</div>
+                  </div>
+                <mat-paginator #paginator
+                [pageSizeOptions]="pageSizeOptions" 
+                [pageSize]="borrowerData.pageSize" 
+                (page)="handlePageEvent($event)"
+                [length]="length"
+                [pageIndex]="borrowerData.pageNo"
+                ></mat-paginator>
+                
+            </div>
+          </div>
+      </div>
+  </div>

@@ -1,0 +1,145 @@
+<div class="navbar-container">
+  <div class="menu-avatar-container" *ngIf="isLoggedIn" fxShow.lt-sm="true" fxShow.gt-md="true" fxShow="true" >
+    <mat-drawer-container [hasBackdrop]="true" (backdropClick)="close('backdrop')">
+      <mat-drawer #drawer class="sidenav-container" mode="push" position="start" (click)="drawer.toggle();">
+        <div>
+          <img [src]="userData.profileImageURL ? userData.profileImageURL: '../../../assets/images/icons/profile.svg'" class="nav-image" alt="Profile Pic"/>
+          <a style="font-size: 24px;margin-left: 10px;">{{userData.name}}</a>
+        </div>
+         <br> 
+        <button mat-menu-item class="btn d-flex align-items-center" *ngFor="let item of items" [routerLink]="[item.url]">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" class="icon">{{item.icon}}</mat-icon>
+            <span>{{item.title}}</span>
+        </button>
+        <button mat-menu-item class="btn d-flex align-items-center" style="margin-left: 3px;">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="icon">logout</mat-icon>
+          <span (click)="logout()">Logout</span>
+        </button>
+      </mat-drawer>
+    </mat-drawer-container>
+    <mat-icon class="listicon" *ngIf="isButtonVisible" (click)="drawer.toggle();">list</mat-icon>
+    <!-- <img src="assets/images/avatar.png" alt="" *ngIf="isButtonVisible" (click)="drawer.toggle(); sideClick()"  class="remove"> -->
+  </div>
+  <div class="menu-avatar-container" *ngIf="!isLoggedIn" fxShow.lt-sm="true" fxShow.gt-md="false" fxShow="false">
+    <mat-drawer-container [hasBackdrop]="true" (backdropClick)="close('backdrop')">
+      <mat-drawer #drawer class="sidenav-container" mode="side" (click)="drawer.toggle(); sideClick()" position="start">
+        <button mat-menu-item class="btn d-flex align-items-center" *ngFor="let item of navItems" [routerLink]="[item.url]">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="icon">{{item.icon}}</mat-icon>
+          <span>{{item.title}}</span>
+        </button>
+      </mat-drawer>
+    </mat-drawer-container>
+    <mat-icon class="listicon" *ngIf="isButtonVisible" (click)="drawer.toggle(); sideClick()">list</mat-icon>
+  </div>
+  <div class="logo-container">
+      <img (click)="routeToDashboard()" src="assets/images/HmlLogo.svg" alt="brand-logo">
+  </div>
+<section class="second-container">
+  <div class="content-container">
+    <div class="header" fxLayout="row" fxLayout.xs="row" fxLayout.lt-sm="column" fxLayoutAlign="none" fxShow.lt-sm="false" fxShow.gt-md="true" fxShow="true">
+      <h5 fxFlex="20"></h5>
+      <h5 fxFlex="15">About</h5>
+      <h5 fxFlex="15">Help</h5>
+      <h5 fxFlex="20">Terms of use</h5>
+      <h5 fxFlex="15">Privacy portal</h5>
+      <h5 fxFlex="5"></h5>
+    </div>
+  </div>
+</section>
+
+<div class="notification-icon" *ngIf="isLoggedIn">
+    <mat-icon style="font-size:30px ;" id="bell" [matBadge]="notificationCount > 0 ? notificationCount: null" matBadgeColor="warn">notifications</mat-icon>
+    <!-- <div class="icon" id="bell"> <img src="https://i.imgur.com/AC7dgLA.png" alt=""> </div> -->
+    <div class="notifications" id="box">
+      <div class="notification-header">
+        <p>Notifications</p>
+      </div>
+      <div class="search-results"
+        [ngStyle]="{'height': (scrollList?.length>0) ? '15rem' : '1rem'}"
+        infinite-scroll
+        [scrollWindow]="false"
+        [infiniteScrollDistance]="ScrollDistance"
+        [infiniteScrollThrottle]="ScrollThrottle"
+        (scrolled)="onScrollDown()"
+        >
+        <div class="notify" *ngFor="let notification of scrollList; let i = index;">
+          <div class="notifications-item" (click)="routeToChatScreen(notification?.senderId,notification?.senderName)">
+             <img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
+            <div class="text">
+                <h4>{{notification?.senderName}}</h4>
+                <p style="margin-top: -13px; font-weight: 550;">{{notification?.content}}</p>
+                <p style="margin-top: -5px;">{{notification?.sendAt[3]}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notification-header" *ngIf="!scrollList?.length || scrollList.length == 0" style="text-align: center;">
+        <p>You have no new Notification</p>
+      </div>
+    </div>
+</div>
+
+
+
+
+<div fxLayout="row" fxLayout.xs="row" fxLayout.lt-sm="column" fxLayoutAlign="start" cross-axis="start">
+  <button *ngIf="!isLoggedIn" class="btn btn-primary login" id="authButton" mat-raised-button (click)="open()">Login/Signup</button>
+  <button *ngIf="isLoggedIn" class="btn btn-primary logout" id="authButton" mat-raised-button (click)="logout()" fxShow.lt-sm="false">Logout</button>
+</div>
+    
+
+
+<!-- <div class="menu-avatar-container" *ngIf="isLoggedIn" fxShow.lt-sm="false" fxShow.gt-md="true" fxShow="true" >
+  <mat-drawer-container [hasBackdrop]="true" (backdropClick)="close('backdrop')">
+    <mat-drawer #drawer class="sidenav-container" mode="push" (click)="drawer.toggle(); sideClick()" position="end">
+      <div>
+        <img src="{{userData.profileImageURL}}" class="nav-image" alt="Profile Pic"/>
+        <a style="font-size: 24px;margin-left: 10px;">{{userData.name}}</a>
+      </div>
+       <br> 
+      <button mat-menu-item class="btn d-flex align-items-center" *ngFor="let item of items">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="icon">{{item.icon}}</mat-icon>
+        <span [routerLink]="[item.url]">{{item.title}}</span>
+      </button>
+      <button mat-menu-item class="btn d-flex align-items-center" style="margin-left: 3px;">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" class="icon">logout</mat-icon>
+        <span (click)="logout()">Logout</span>
+      </button>
+    </mat-drawer>
+  </mat-drawer-container>
+  <img src="assets/images/avatar.png" alt="" *ngIf="isButtonVisible" (click)="drawer.toggle(); sideClick()"  class="remove">
+</div> -->
+
+
+  <div class="menu-avatar-container" *ngIf="!token">
+    <!-- <button mat-button > -->
+        <!-- <img src="assets/images/avatar.png" alt="" (click)="open()"> -->
+    <!-- </button> -->
+    <!-- <mat-sidenav-container>
+      <mat-sidenav mode="over" [(opened)]="opened">
+        sidenav
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <img src="assets/images/avatar.png" alt="" (click)="opened=!opened" class="remove">
+      </mat-sidenav-content>
+    </mat-sidenav-container> -->
+    <!-- <mat-drawer-container>
+      <mat-drawer #drawer class="sidenav-container" mode="side" (click)="drawer.toggle(); sideClick()" position="end">
+        <button mat-menu-item class="btn d-flex align-items-center" *ngFor="let item of navItems">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="icon">{{item.icon}}</mat-icon>
+          <span [routerLink]="[item.url]">{{item.title}}</span>
+        </button>
+
+
+        <button mat-menu-item class="btn d-flex align-items-center" *ngFor="let item of items">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="icon">{{item.icon}}</mat-icon>
+          <span [routerLink]="[item.url]" (click)="item.title==='Logout' ?signOut():''">{{item.title}}</span>
+        </button>
+      </mat-drawer> -->
+    <!-- </mat-drawer-container>
+
+    <img src="assets/images/avatar.png" alt="" *ngIf="isButtonVisible" (click)="drawer.toggle(); sideClick()"  class="remove"> -->
+  </div>
+
+  
+</div>

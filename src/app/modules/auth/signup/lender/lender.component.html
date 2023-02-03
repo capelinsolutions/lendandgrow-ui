@@ -1,0 +1,403 @@
+<form [formGroup]="lenderPersonalInfo" class="form-container">
+  <ng-template matStepLabel>Personal Information</ng-template>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Name</mat-label>
+    <input type="text" matInput formControlName="name" placeholder="Name" required />
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('name')?.touched &&
+            lenderPersonalInfo.get('name').errors?.required
+          ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('name')?.touched &&
+            lenderPersonalInfo.get('name').errors?.minlength;
+            else nameMaxLength
+          ">
+      Minimum
+      {{ lenderPersonalInfo.get("name").errors?.minlength?.requiredLength }}
+      characters are required
+    </mat-error>
+    <ng-template #nameMaxLength>
+      <mat-error *ngIf="
+              lenderPersonalInfo.get('name')?.touched &&
+              lenderPersonalInfo.get('name').errors?.maxlength;
+              else namePattern
+            ">
+        Maximum
+        {{
+        lenderPersonalInfo.get("name").errors?.maxlength?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+    <ng-template #namePattern>
+      <mat-error *ngIf="
+              lenderPersonalInfo.get('name')?.touched &&
+              lenderPersonalInfo.get('name').errors?.pattern
+            ">
+        This field can only contain alphabets
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="text" matInput formControlName="email" placeholder="Email" required />
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('email')?.touched &&
+            lenderPersonalInfo.get('email').errors?.required
+          ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('email')?.touched &&
+            lenderPersonalInfo.get('email').errors?.pattern
+          ">
+      Invalid email address
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="password" placeholder="Password" required />
+    <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('password')?.touched &&
+            lenderPersonalInfo.get('password').errors?.required
+          ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('password')?.touched &&
+              lenderPersonalInfo.get('password').errors?.minlength;
+            else passwordMaxLength
+          ">
+      Minimum
+      {{
+      lenderPersonalInfo.get("password").errors?.minlength?.requiredLength
+      }}
+      characters are required
+    </mat-error>
+    <ng-template #passwordMaxLength>
+      <mat-error *ngIf="
+              lenderPersonalInfo.get('password')?.touched &&
+                lenderPersonalInfo.get('password').errors?.maxlength;
+              else passwordPattern
+            ">
+        Maximum
+        {{
+        lenderPersonalInfo.get("password").errors?.maxlength
+        ?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+    <ng-template #passwordPattern>
+      <mat-error *ngIf="
+              lenderPersonalInfo.get('password')?.touched &&
+              lenderPersonalInfo.get('password').errors?.pattern
+            ">
+        Password must include alphabet and number
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Confirm Password</mat-label>
+    <input [type]="hideConfirmPassword ? 'password' : 'text'" matInput formControlName="confirmPassword" placeholder="Confirm Password"
+      required />
+    <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-error *ngIf="
+          lenderPersonalInfo.get('confirmPassword')?.touched &&
+            lenderPersonalInfo.get('confirmPassword').errors?.required
+          ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          lenderPersonalInfo.get('confirmPassword')?.touched &&
+          lenderPersonalInfo.get('confirmPassword').errors?.minlength;
+             else confirmPasswordPattern
+          ">
+      Minimum
+      {{ lenderPersonalInfo.get("confirmPassword").errors?.minlength?.requiredLength }}
+      characters are required
+    </mat-error>
+
+    <ng-template #confirmPasswordMaxLength>
+      <mat-error *ngIf="
+            lenderPersonalInfo.get('confirmPassword')?.touched &&
+            lenderPersonalInfo.get('confirmPassword').errors?.maxlength;
+              else confirmPasswordPattern
+            ">
+        Maximum
+        {{ lenderPersonalInfo.get("confirmPassword").errors?.maxlength?.requiredLength }}
+        characters are required
+      </mat-error>
+    </ng-template>
+
+    <ng-template #confirmPasswordPattern>
+      <mat-error *ngIf="
+            lenderPersonalInfo.get('confirmPassword')?.touched &&
+            lenderPersonalInfo.get('confirmPassword').errors?.pattern;
+              else confirmPasswordMatch
+            ">
+        Password must include upper case, lower case and a digit
+      </mat-error>
+    </ng-template>
+
+    <ng-template #confirmPasswordMatch>
+      <mat-error *ngIf="f.confirmPassword?.touched && f.confirmPassword?.errors?.mustMatch">
+        Passsword and Confirm Password didn't match.
+      </mat-error>
+    </ng-template>
+
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Contact</mat-label>
+    <input type="text" matInput formControlName="contact" placeholder="Contact" required />
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('contact')?.touched &&
+            lenderPersonalInfo.get('contact').errors?.required
+          ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          lenderPersonalInfo.get('contact')?.touched &&
+          lenderPersonalInfo.get('contact').errors?.minlength;
+             else contactMaxLength
+          ">
+      Minimum
+      {{ lenderPersonalInfo.get("contact").errors?.minlength?.requiredLength }}
+      Numbers are required
+    </mat-error>
+
+    <ng-template #contactMaxLength>
+      <mat-error *ngIf="
+            lenderPersonalInfo.get('contact')?.touched &&
+            lenderPersonalInfo.get('contact').errors?.maxlength;
+              else contactPattern
+            ">
+        Maximum
+        {{ lenderPersonalInfo.get("contact").errors?.maxlength?.requiredLength }}
+        Numbers are required
+      </mat-error>
+    </ng-template>
+    <ng-template #contactPattern>
+      <mat-error *ngIf="
+              lenderPersonalInfo.get('contact')?.touched &&
+              lenderPersonalInfo.get('contact').errors?.pattern
+            ">
+        Contact must be in US format ex: (+1-000-000-0000)
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Address</mat-label>
+    <input type="text" matInput formControlName="address" placeholder="Address" required />
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('address')?.touched &&
+            lenderPersonalInfo.get('address').errors?.required
+          ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('address')?.touched &&
+              lenderPersonalInfo.get('address').errors?.minlength;
+            else addressMaxLength
+          ">
+      Minimum
+      {{
+      lenderPersonalInfo.get("address").errors?.minlength?.requiredLength
+      }}
+      characters are required
+    </mat-error>
+    <ng-template #addressMaxLength>
+      <mat-error *ngIf="
+              lenderPersonalInfo.get('address')?.touched &&
+              lenderPersonalInfo.get('address').errors?.maxlength
+            ">
+        Maximum
+        {{
+        lenderPersonalInfo.get("address").errors?.maxlength
+        ?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Country</mat-label>
+    <input type="text" matInput formControlName="country" placeholder="Country" required />
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('country')?.touched &&
+            lenderPersonalInfo.get('country').errors?.required
+          ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('country')?.touched &&
+              lenderPersonalInfo.get('country').errors?.minlength;
+            else countryMaxLength
+          ">
+      Minimum
+      {{
+      lenderPersonalInfo.get("country").errors?.minlength?.requiredLength
+      }}
+      characters are required
+    </mat-error>
+    <ng-template #countryMaxLength>
+      <mat-error *ngIf="
+              lenderPersonalInfo.get('country')?.touched &&
+              lenderPersonalInfo.get('country').errors?.maxlength
+            ">
+        Maximum
+        {{
+        lenderPersonalInfo.get("country").errors?.maxlength
+        ?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>City</mat-label>
+    <input type="text" matInput formControlName="city" placeholder="City" required />
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('city')?.touched &&
+            lenderPersonalInfo.get('city').errors?.required
+          ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+            lenderPersonalInfo.get('city')?.touched &&
+              lenderPersonalInfo.get('city').errors?.minlength;
+            else cityMaxLength
+          ">
+      Minimum
+      {{ lenderPersonalInfo.get("city").errors?.minlength?.requiredLength }}
+      characters are required
+    </mat-error>
+    <ng-template #cityMaxLength>
+      <mat-error *ngIf="
+              lenderPersonalInfo.get('city')?.touched &&
+              lenderPersonalInfo.get('city').errors?.maxlength
+            ">
+        Maximum
+        {{
+        lenderPersonalInfo.get("city").errors?.maxlength?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <div class="btn-container text-center mt-4">
+    <!-- <button
+          class="btn btn-primary"
+          mat-raised-button
+          matStepperNext
+          [class.disable-btn]="lenderPersonalInfo.invalid"
+        >
+          Next
+        </button> -->
+    <button class="btn btn-primary mx-1" mat-raised-button (click)="submit()"
+      [class.disable-btn]="lenderPersonalInfo.invalid">
+      Sign up
+    </button>
+  </div>
+</form>
+<!-- <mat-step [stepControl]="otherInfo">
+    <form [formGroup]="otherInfo" class="form-container">
+      <ng-template matStepLabel>Other Information</ng-template>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Product Offer</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="productOffer"
+          placeholder="productOffer"
+          required
+        />
+        <mat-error
+          *ngIf="
+            otherInfo.get('productOffer')?.touched &&
+            otherInfo.get('productOffer').errors?.required
+          "
+        >
+          This field is required
+        </mat-error>
+        <mat-error
+          *ngIf="
+            otherInfo.get('productOffer')?.touched &&
+              otherInfo.get('productOffer').errors?.minlength;
+            else nameMaxLength
+          "
+        >
+          Minimum
+          {{ otherInfo.get("productOffer").errors?.minlength?.requiredLength }}
+          characters are required
+        </mat-error>
+        <ng-template #nameMaxLength>
+          <mat-error
+            *ngIf="
+              otherInfo.get('productOffer')?.touched &&
+              otherInfo.get('productOffer').errors?.maxlength
+            "
+          >
+            Maximum
+            {{ otherInfo.get("productOffer").errors?.maxlength?.requiredLength }}
+            characters are required
+          </mat-error>
+        </ng-template>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fee Structure</mat-label>
+        <mat-select formControlName="feeStructure">
+          <mat-option *ngFor="let feeStructure of feeStructureArray; let i = index" [value]="feeStructure.id">{{feeStructure.text}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <ng-container formArrayName="requiredDocs">
+        <ng-container *ngFor="let doc of requiredDocs.controls; let i = index">
+          <div [formGroupName]="i">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Doc {{ i + 1 }}</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="document"
+                placeholder="Doc {{ i + 1 }}"
+                required
+              />
+            </mat-form-field>
+            <button
+              mat-icon-button
+              color="warn"
+              *ngIf="requiredDocs.controls.length > 1"
+              (click)="removeDoc(i)"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </ng-container>
+      </ng-container>
+      <div class="w-50 text-center btn-container">
+        <button mat-icon-button class="btn-primary" (click)="addDoc()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="btn-container text-center mt-4">
+        <button
+          class="btn btn-primary mx-1"
+          mat-raised-button
+          matStepperPrevious
+        >
+          Back
+        </button>
+        <button
+          class="btn btn-primary mx-1"
+          mat-raised-button
+          (click)="submit()"
+          [class.disable-btn]="otherInfo.invalid"
+        >
+          Sign up
+        </button>
+      </div>
+    </form>
+  </mat-step> -->

@@ -1,0 +1,35 @@
+<div class="signup-container py-3">
+  <div *ngIf="!showForm">
+    <h3 class="text-center py-3">Select your option</h3>
+    <div class="options-container" fxLayout="row" fxLayoutAlign="">
+      <div class="option option-1 text-center cursor-pointer">
+        <div class="content p-2" (click)="handleShowForm('borrower')">
+          <p><strong>Borrower</strong></p>
+        </div>
+        <div class="overlay"></div>
+        <div class="overlay-bg" (click)="handleShowForm('borrower')"></div>
+      </div>
+      <div
+        class="option option-2 text-center cursor-pointer"
+        (click)="handleShowForm('investor')"
+      >
+        <div class="content p-2">
+          <p><strong>Lender</strong></p>
+        </div>
+        <div class="overlay"></div>
+        <div class="overlay-bg" (click)="handleShowForm('investor')"></div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showForm">
+    <!-- <button mat-icon-button class="back-btn" (click)="showForm = !showForm">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button> -->
+    <div *ngIf="userType == 'borrower'">
+      <app-borrower [currentUserTypeId]="currentUserTypeId"></app-borrower>
+    </div>
+    <div *ngIf="userType == 'investor'">
+      <app-lender [currentUserTypeId]="currentUserTypeId"></app-lender>
+    </div>
+  </div>
+</div>

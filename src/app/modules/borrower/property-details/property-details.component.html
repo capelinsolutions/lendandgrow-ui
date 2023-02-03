@@ -1,0 +1,68 @@
+<div class="main-container">
+    <!-- <app-breadcrumbs [breadcrumbsList]="breadcrumbsList"></app-breadcrumbs> -->
+    <div class="inner-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 py-4 px-2 ">
+                    <h1 style="margin-top: 20px;">{{propertyData.title}}</h1>
+                    <div class="propinfo">
+                        <p><Strong>Description:</Strong> {{propertyData.description}}</p>
+                        <p><Strong>Price:</Strong> {{propertyData.price}}</p>
+                        <p><Strong>Area:</Strong> {{propertyData.area}}</p>
+                        <p><Strong>Questions:</Strong></p>
+
+                        <div *ngFor="let question of propertyData?.questions; let i = index">
+                            <span class="color-blue" *ngIf="question?.label != 'Property Documents'">{{ i + 1 }}) {{ question.label}} : <b>{{
+                                    question?.value }}</b></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 py-4 px-2">
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 py-4 px-2">
+                    <div style="text-align: right;">
+                        <img src="{{ imageUrls[0] ? imageUrls[0] : '../../../../../../assets/images/icons/home.png'}}"
+                            alt="PropertyImg" class="mainImage">
+                    </div>
+                </div>
+            </div>
+            <h2 class="py-2">Images</h2>
+            <div class="lower-profile-section">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 py-4 px-2" *ngFor="let url of imageUrls">
+                        <div class="property-card text-center">
+                            <div class="property-card-image">
+                                <img [src]="url" alt="PropertyImg" class="subimage">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="files-list-container mt-5" *ngIf="Borrower">
+            <h2>Documents</h2>
+            <mat-selection-list #shoes [multiple]="false" *ngIf="dataSourceDocuments.length > 0"
+                (selectionChange)="onClickDocument($event)">
+                <mat-list-option *ngFor="let document of docLinks;let i = index" [value]="document">
+                    <mat-icon style="color: red;">picture_as_pdf</mat-icon>
+                    <p class="primary-color" *ngIf="document!=null">{{ document | urlSetting}}</p>
+                </mat-list-option>
+            </mat-selection-list>
+            <p *ngIf="docLinks.length == 0">No Property Documents Available</p>
+        </section>
+
+        <section class="files-list-container mt-5" *ngIf="Investor">
+            <h2>Documents</h2>
+            <mat-selection-list #shoes [multiple]="false" *ngIf="emailsDocumentAccess.length > 0"
+                (selectionChange)="onClickDocument($event)">
+                <mat-list-option *ngFor="let document of emailsDocumentAccess; let j = index" [value]="document">
+                    <mat-icon style="color: red;">picture_as_pdf</mat-icon>
+                    <p class="primary-color">{{ document.documentUrl | urlSetting}}</p>
+                </mat-list-option>
+            </mat-selection-list>
+            <p *ngIf="emailsDocumentAccess.length == 0">No Shared Documents Available</p>
+        </section>
+
+    </div>
+</div>

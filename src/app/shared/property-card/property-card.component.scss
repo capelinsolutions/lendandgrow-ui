@@ -1,0 +1,25 @@
+@import "~../../../../../variables.scss";
+
+.p {
+    color: $green-color !important;
+    font-size: 15px !important;
+}
+
+img{
+  height: 200px;
+  border-radius: 50px;
+  max-width: 300px;
+  width: 100%;
+    
+}
+
+// @media screen and (max-width: 430px) {
+//   img{
+//     width: 250px;
+//     height: 250px;
+//     border-radius: 50px;
+//     object-fit: cover;
+//     overflow: hidden;
+    
+// }
+// }

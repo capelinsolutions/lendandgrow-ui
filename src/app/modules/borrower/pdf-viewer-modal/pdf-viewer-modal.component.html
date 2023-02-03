@@ -1,0 +1,20 @@
+<form class="form-container text-center">
+    <!-- <div>
+        <button class="doc" (click)="onClickDocument($event)"><h3 class="mb-5 text-center">Share Document <mat-icon>share</mat-icon></h3></button>
+    </div> -->
+    <div class="buttondiv">
+        <button class="download" (click)="downloadPdf()"><mat-icon>download</mat-icon></button>
+        <button class="close" (click)="close()"><mat-icon>close</mat-icon></button>
+    </div>
+    
+    
+    <pdf-viewer
+    [src]="pdfSrc"
+    [render-text]="true"
+    style="width: 800px; height: 400px"
+    (error)="onError($event)"
+    [autoresize]="true"
+    >
+
+    </pdf-viewer>
+  </form>

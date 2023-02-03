@@ -1,0 +1,40 @@
+.close {
+    position: absolute;
+    right: 52px;
+    width: 32px;
+    top: -5px;
+    height: 46px;
+    font-size: 10px;
+    size: 20px;
+    opacity: 0.3;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    align-items: center;
+    color: red;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    left: 20px;
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: red;
+    
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
+
+  .checkbox-header .mat-content {
+    height: 24px;
+  }

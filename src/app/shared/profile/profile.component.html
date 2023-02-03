@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-xs-12 col-lg-6">
+        <h2>Profile Name</h2>
+        <br />
+        <br />
+        <p>Contact Number: <br /> {{data.contactNumber}}</p>
+        <br />
+        <br />
+        <p>Address: <br /> {{data.address}}</p>
+        <br />
+        <br />
+        <p>Email Address: <br /> {{data.email}}</p>
+        <br />
+        <br />
+        <a href="#" class="success-link">Edit Profile <span><img class="pencil-icon" src="../../../assets/images/icons/pencil.svg" alt="Edit"></span></a>
+    </div>
+    <div class="col-xs-12 col-lg-6 text-center">
+        <div>
+            <label class="file-input-label shadow">
+                <input type="file" (input)="uploadDocument($event)" accept="image/png, image/jpg, image/jpeg" />
+                <mat-icon>upload</mat-icon>
+            </label>
+            <p class="pt-2">Upload Picture</p>
+        </div>
+    </div>
+</div>

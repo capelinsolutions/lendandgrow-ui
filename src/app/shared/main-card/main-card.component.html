@@ -1,0 +1,17 @@
+<div class="card container" [routerLink]="id" *ngIf="id">
+    <!-- <div class="card-header-area">
+        <img src="../../../assets/images/angular.png" class="verify-image" alt="Ver">
+    </div> -->
+    <div class="card-body text-center">
+        <div class="card-image">
+            <img [src]="data.profileImageURL ? data.profileImageURL : '../../../assets/images/icons/usericon.png'" class="card-image" alt="Profile Pic">
+        </div>
+        <div class="card-description">
+            <h5 style="margin-top: 15px;font-size:16px !important; font-weight: 600;">{{data.name ? data.name: 'Name is not present'}}</h5>
+            <span>HML14587J</span>
+        </div>
+        <!-- <div class="card-small">
+            <small>100 Reviews</small>
+        </div> -->
+    </div>
+</div>

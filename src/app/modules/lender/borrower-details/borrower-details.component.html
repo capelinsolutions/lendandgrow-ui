@@ -1,0 +1,45 @@
+<div class="main-container">
+    <app-breadcrumbs [breadcrumbsList]="breadcrumbsList"></app-breadcrumbs>
+    <div class="inner-container">
+        <div class="upper-profile-section">
+            <div class="row">
+                <div class="col-xs-12 col-lg-6 sideprofile">
+                    <h2>{{data.name}}</h2>
+                    <br />
+                    <br />
+                    <p><strong>Contact Number:</strong> <br /> {{data.contact}}</p>
+                    <br />
+                    <br />
+                    <p><strong>Address:</strong> <br /> {{data.address}}</p>
+                    <br />
+                    <br />
+                    <p><strong>Email Address: </strong> <br /> {{data.email}}</p>
+                    <br />
+                    <br />
+                </div>
+                <div class="col-xs-12 col-lg-6 text-center mt-4">
+                    <div class="image-background">
+                        <div class="profile-image">
+                            <img [src]="data.profileImageURL ? data.profileImageURL : './../../../../assets/images/icons/profile.svg'" class="lender-card-image" alt="Profile Pic">
+                        </div>
+                    </div>
+                </div>
+                <div class="inner-right-banner-right">
+                    <button class="btn btn-success py-2 px-4" routerLink="chat/{{data?.userId}}">Message</button>
+                </div>
+            </div>
+        </div>
+        <div class="lower-profile-section">
+            <h2 class="py-5">Properties</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 py-4 px-2" *ngFor="let deal of sortedList">
+                    <app-property-card [deal]="deal"></app-property-card>
+                </div>
+            </div>
+            <div style="text-align: center;" *ngIf="deals?.length>3">
+                <button class="btn btn-primary py-2 px-4" routerLink="properties">See More</button>
+            </div>
+            <p *ngIf="!deals">No properties available</p>
+        </div>
+    </div>
+</div>

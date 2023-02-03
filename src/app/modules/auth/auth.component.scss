@@ -1,0 +1,32 @@
+@import "~../../../variables";
+.btn-auth {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 0px;
+    background-color: transparent;
+}
+
+.btn-active {
+    border-bottom: 5px solid #00a652;
+}
+
+::ng-deep.mat-tab-label-container{
+    .mat-tab-labels{
+        .mat-tab-label{
+            // min-width: 200px !important;
+            width: 50% !important;
+            padding: 0px !important;
+        }
+    }
+    .mat-ink-bar{
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 756px){
+    ::ng-deep.cdk-overlay-pane{
+        width: 95% !important;
+        min-width: 95% !important;
+    }
+}

@@ -1,0 +1,32 @@
+@import "~../../../../../variables.scss";
+
+p {
+    font-size: 20px;
+    color: $primary-color;
+}
+.success-link {
+    color: $green-color;
+}
+
+a{
+    font-size: 20px;
+}
+.pencil-icon {
+    height: 15px;
+}
+
+.file-input-label {
+    border-radius: 50%;
+    display: inline-block;
+    padding: 100px 100px;
+    cursor: pointer;
+    color: $green-color;
+    input[type="file"] {
+      display: none;
+    }
+    mat-icon {
+      font-size: 35px;
+      height: 55px;
+      width: 55px;
+    }
+}

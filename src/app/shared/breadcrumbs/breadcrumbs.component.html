@@ -1,0 +1,10 @@
+<div class="breadcrumbs-container light-color">
+    <mat-icon>home</mat-icon>
+    <span class="link-item" [routerLink]="[home]">Home</span>
+    <ng-container *ngIf="breadcrumbsList.length > 0">
+        <ng-container *ngFor="let item of breadcrumbsList">
+            <mat-icon>chevron_right</mat-icon>
+            <span class="link-item" [routerLink]="[item.url]">{{ item.title }}</span>
+        </ng-container>
+    </ng-container>
+</div>

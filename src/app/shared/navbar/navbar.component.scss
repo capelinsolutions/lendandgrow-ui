@@ -1,0 +1,285 @@
+@import "~../../../variables";
+
+.btn.btn-primary.login{
+    background-color: $primary-color !important;
+}
+.btn.btn-primary.logout{
+    background-color: $primary-color !important;
+}
+.navbar-container {
+    display: flex;
+    padding: 25px;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 3;
+    background-color: #D2D3D0;
+    height: 80px;
+    .listicon{
+        font-size: 40px;
+        color: $primary-color !important;
+        margin-top: 5px;
+    }
+    .menu-avatar-container {
+        margin-bottom: 10px;
+        img {
+            height: 30px;
+        }
+    }
+    .logo-container {
+        img {
+            height: 30px;
+        }
+        margin-top: -20px;
+        margin-left: 50px;
+    }
+    .second-container{
+        width: 1070px;
+        margin-top: 10px;
+    }
+}
+.remove {
+    background-color: transparent !important;
+}
+// @media screen and (max-width: 1768px) {
+//     .remove {
+//         background-color: transparent !important;
+//     }
+// }
+::ng-deep.mat-menu-content {
+    background: $primary-color  !important;
+    button,
+    button:hover {
+        color: white;
+        .icon {
+            margin-right: 5px;
+            color: white
+        }
+        span{
+            font-size: 15px;
+        }
+    }
+    button:focus {
+        box-shadow: none;
+    }
+}
+::ng-deep.mat-drawer-container {
+    background: $primary-color  !important;
+    button,
+    button:hover {
+        color: white;
+        .icon {
+            margin-right: 5px;
+            color: white
+        }
+        span{
+            font-size: 15px;
+        }
+    }
+    button:focus {
+        box-shadow: none;
+    }
+}
+// ::ng-deep.example-container {
+//     width: 300px;
+//     height: 100%;
+// }
+// ::ng-deep.example-sidenav-content {
+//     background: $primary-color  !important;
+//     width: 300px;
+// }
+// ::ng-deep.mat-drawer-container {
+//     height: 100%;
+// }
+mat-drawer-container {
+    background-color: transparent;
+    overflow: visible;
+    flex: 1 1 auto;
+    display: inline-block;
+    position: inherit;
+    color: $white-color  !important;
+}
+mat-drawer{
+padding: 16px;
+left: 0;
+}
+// .mat-drawer-container{
+//     z-index: 1;
+//     box-sizing: border-box;
+//     -webkit-overflow-scrolling: touch;
+//     display: inline-block;
+//     overflow: hidden;
+// }
+mat-drawer{
+    background: $primary-color  !important;
+    width:300px;
+    color: $white-color  !important;
+    height: 100vh;
+}
+.sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  @media screen and (max-width: 668px) {
+    h1 {
+      line-height: 30px !important;
+    }
+    p{
+      font-size: 15px !important;
+    }
+    .second-container {
+    //     .content-container{
+    //         padding-left: 5px !important;
+    //       padding-right: 5px !important;
+    //       display: flex;
+    //       flex-wrap: wrap;
+    //     }
+    //   .header{
+    //     text-align: center;
+    //     padding-left: 5px !important;
+    //       padding-right: 5px !important;
+    //       display: flex;
+    //       flex-wrap: wrap;
+    //     h5{
+    //       width: 75%;
+    //       margin-right: auto !important;
+    //       margin-left: auto !important;
+    //       border-bottom: 1px solid;
+    //     }
+    //   }
+    button .btn.btn-primary{
+        justify-content: space-between;
+    margin-right: 3px;
+    height: 35px;
+    }
+    }
+    .list-container {
+        .list {
+          padding-left: 5px !important;
+          padding-right: 5px !important;
+          display: flex;
+          flex-wrap: wrap;
+          .list-item {
+            //width: 48% !important;
+            //height: 100px !important;
+            margin: 5px 1% !important;
+            mat-icon{
+              font-size: 30px !important;
+             height: 30px !important;
+            width: 30px !important;
+            }
+          }
+        }
+      }
+  }
+  @media screen and (max-width: 568px) {
+    h1 {
+      line-height: 30px !important;
+    }
+    p{
+      font-size: 15px !important;
+    }
+    .second-container {
+        display: flex;
+          flex-wrap: wrap;
+      }
+    }
+    mat-sidenav-container{
+    height: 100%
+    }
+    mat-sidenav,mat-sidenav-content{
+padding: 16px;
+    }
+    mat-sidenav{
+width:200px;
+background-color: $primary-color
+    }
+    .log{
+        margin-right: 20px;
+    }
+    .nav-image {
+        width: 17%;
+        height: 40px !important;
+        object-fit: cover;
+        overflow: hidden;
+        border-radius: 45%;
+        margin-bottom: 10px;
+        background-color: $primary-color;
+    }
+    h3{
+        color: $white-color  !important;
+    }
+    .notifications{
+        width: 320px;
+        height: 0px;
+        opacity: 0;
+        position: absolute;
+        top: 63px;
+        right: 62px;
+        border-radius: 5px 0px 5px 5px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    }
+    .notifications .notification-header p{
+        font-size: 14px;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        color: #999
+    }
+    .notifications h2 span{
+        color: #f00
+    }
+    .notifications-item{
+        display: flex;
+        border-bottom: 1px solid #eee;
+        padding: 6px 9px;
+        margin-bottom: 0px;
+        cursor: pointer
+    }
+    .notifications-item:hover{
+        background-color: #eee
+    }
+    .notifications-item img{
+        display: block;
+        width: 50px;
+        height: 50px;
+        margin-right: 9px;
+        border-radius: 50%;
+        margin-top: 2px
+    }
+    .notifications-item .text h4{
+        color: #777;
+        font-size: 16px;
+        margin-top: 3px
+    }
+    .notifications-item .text p{
+        color: #aaa;
+        font-size: 12px
+    }
+
+    .notification-header p{
+        padding: 20px;
+    }
+    .notification-icon{
+        margin-right : 30px;
+        margin-top:10px;
+        color: $primary-color;
+    }
+    .showmore{
+        background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    text-align: center;
+    margin-left: 140px;
+    }
+    .search-results {
+        height: 15rem;
+        overflow-y: scroll;
+      }

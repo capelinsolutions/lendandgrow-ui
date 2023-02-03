@@ -1,0 +1,214 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~./variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+html,
+body {
+  height: 80%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.bg-green {
+  background-color: $green-color;
+}
+h5,
+h4,
+h3,
+h2,
+h1 {
+  color: $primary-color !important;
+}
+
+h1 {
+  font-size: 40px !important;
+  font-weight: bold !important;
+}
+
+h2 {
+  font-size: 30px !important;
+}
+
+h3 {
+  font-size: 20px !important;
+}
+h4 {
+  font-size: 15px !important;
+}
+
+h5 {
+  font-size: 20px !important;
+
+}
+
+p {
+  letter-spacing: 0.06rem;
+}
+
+body ::-webkit-scrollbar {
+  width: 6px;
+  height: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: $primary-color;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #4c82ce;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primary-color;
+}
+
+.mat-tab-label-container {
+  .mat-tab-labels {
+    .mat-tab-label {
+      .mat-tab-label-content {
+        color: $primary-color;
+      }
+    }
+    .mat-tab-label-active {
+      opacity: 1;
+    }
+  }
+  .mat-ink-bar {
+    background-color: $green-color !important;
+  }
+}
+
+.form-container {
+  .mat-form-field {
+    width: 49%;
+    margin-right: 1%;
+    .mat-form-field-wrapper {
+      .mat-form-field-flex {
+        background-color: transparent;
+      }
+    }
+  }
+  .mat-form-field:hover {
+    .mat-form-field-underline {
+      .mat-form-field-ripple {
+        background-color: $primary-color;
+      }
+    }
+  }
+  .mat-form-field-valid {
+    .mat-form-field-underline {
+      .mat-form-field-ripple {
+        background-color: $primary-color;
+      }
+    }
+  }
+  .mat-focused {
+    .mat-form-field-label {
+      color: $primary-color;
+    }
+  }
+
+  @media screen and (max-width: 764px) {
+    .mat-form-field {
+      width: 100% !important;
+      margin-right: 0% !important;
+    }
+  }
+}
+
+.btn-container {
+  .btn {
+    min-width: 150px;
+  }
+  .btn-primary {
+    background-color: $primary-color;
+    color: $white-color;
+  }
+  .btn-success {
+    background-color: $green-color;
+    color: $white-color;
+  }
+}
+.disable-btn {
+  background-color: $light-blue !important;
+  pointer-events: none;
+}
+.light-color {
+  color: #707070;
+}
+.white-color {
+  color: #ffffff !important;
+}
+.primary-color {
+  color: $primary-color;
+}
+.primary-bg {
+  background-color: $primary-color;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+  background-color: $primary-color;
+  filter: brightness(97%);
+  box-shadow: none;
+}
+.main-container {
+  width: 90%;
+  margin: auto;
+  margin-top: 120px;
+  .inner-container {
+    margin-top: 20px;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
+    padding: 20px;
+    p,a{
+      font-size: 17px;
+    }
+  }
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+  background-color: $primary-color !important;
+}
+
+@media screen and (max-width: 768px) {
+  h1{
+    font-size: 25px !important;
+  }
+  h2{
+    font-size: 23px !important;
+  }
+  h3{
+    font-size: 21px !important;
+  }
+  h5{
+    font-size: 17px !important;
+  }
+  p{
+    font-size: 15px !important;
+    text-align: justify;
+  }
+}
+
+.mat-drawer-container .mat-drawer-transition{
+  z-index: 1;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.mat-drawer-backdrop {
+  position: fixed !important;
+}
+.mat-drawer-inner-container{ overflow: hidden !important; }

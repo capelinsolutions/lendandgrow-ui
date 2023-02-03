@@ -1,0 +1,55 @@
+<div class="main-container">
+    <app-breadcrumbs [breadcrumbsList]="breadcrumbsList"></app-breadcrumbs>
+
+    <div class="inner-container">
+
+        <div class="lender-list container-fluid">
+            <div class="head-section row">
+                <h1 class="d.none">Lender List</h1>
+                <div class="head-section-right">
+                    <form class="form-container" fxLayout="row" fxLayoutAlign="end center" [formGroup]="filterForm" (ngSubmit)="searchByName()">
+                        <mat-form-field class="search-field mr-4" fxFlex="35" appearance="fill">
+                            <mat-label>Name</mat-label>
+                            <input type="text" formControlName="name" matInput placeholder="Search by Name." />
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" fxFlex="20" class="mr-2">
+                            <mat-label>State</mat-label>
+                            <input matInput formControlName="state">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" fxFlex="20" class="mr-4">
+                            <mat-label>City</mat-label>
+                            <input matInput formControlName="city">
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="fill" fxFlex="20" class="mr-2">
+                            <mat-label>Fee Structure</mat-label>
+                            <mat-select formControlName="feeStructure">
+                                <mat-option *ngFor="let feeStructure of feeStructureArray; let i = index" [value]="feeStructure.id">
+                                    {{feeStructure.text}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button type="submit" style="background-color: transparent;border: none;"><mat-icon matSuffix (click)="searchByName()">search</mat-icon></button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="body-section">
+                <h2>Suggested Lenders</h2>
+                <div class="row borrower-list-card-section container-fluid">
+                    <div class="col-lg-4 col-md-6 col-sm-12 py-4 px-2" *ngFor="let data of Data">
+                        <app-main-card [data]="data"></app-main-card>
+                    </div>
+                </div>
+                <p *ngIf="!Data">No Lenders Found</p>
+                <mat-paginator 
+                [pageSizeOptions]="pageSizeOptions" 
+                [pageSize]="pageSize" 
+                (page)="handlePageEvent($event)"
+                [length]="length"
+                [pageIndex]="Data.pageNo"
+                ></mat-paginator>
+                
+            </div>
+        </div>
+    </div>
+</div>

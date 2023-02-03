@@ -1,0 +1,112 @@
+<div class="main-container">
+    <app-breadcrumbs [breadcrumbsList]="breadcrumbsList"></app-breadcrumbs>
+    <div class="inner-container">
+        <div class="banner-section container py-5">
+            <div class="row">
+                <div class="col-xs-12 col-md-5 ml-4">
+                    <div class="profile-image">
+                        <img [src]="imageURL ? imageURL: '../../../assets/images/icons/usericon.png'" class="lender-card-image" alt="Profile Pic">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-4 ml-4">
+                    <div class="right-banner-section">
+                        <div class="inner-right-banner-left">
+                            <h1>{{lenderData.name}}</h1>
+                            <h2>{{lenderData.occupation}} {{lenderData.companyName}}</h2>
+                            <!-- <h4>108 Reviews</h4> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-3 ml-4"> 
+                    <div class="right-banner-section">
+                        <div class="inner-right-banner-left">
+                            <div class="inner-right-banner-right">
+                                <button class="btn btn-primary py-2 px-4 edit" (click)="open()">{{buttonName? buttonName : 'Complete Profile'}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="details-section container py-4">
+            <div class="row">
+                <div class="col-xs-12 col-lg-6">
+                    <h3 class="py-2"><strong>About</strong></h3>
+                    <!-- <p>Secure financing for Borrowers in residential and commercial properties. Specializing in Conventional, FHA, and Reverse Mortgages Additional languages spoken: Greek</p> -->
+                    <p>{{lenderData.about}}</p>
+                    <br><br><br>
+                    <p class="strong"><strong>Additional Languages spoken: </strong>{{lenderData.additionalLanguage}}</p>
+                    <br><br>
+                    <p><strong>Email Address:</strong> {{lenderData.email}}</p>
+                    <p><strong>Number:</strong> {{lenderData.contact}}</p>
+                    <p><strong>Address:</strong> {{lenderData.address}}</p>
+                    <p><strong>Serial Number:</strong> {{lenderData.serialNo}}</p>
+                    <p><strong>Fee Structure:</strong> {{feeStructure}}</p>
+                </div>
+                <div class="col-xs-12 col-lg-6">
+                    <!-- <h3 class="py-2">Reviews</h3>
+                            <p class="pt-4"><strong>Great company and Loan Officer</strong></p>
+                            <p>howards271 from Woodcliff Lake, NJ <br />
+                            Everyone at ABC Company was pleasant,
+                            knowledgeable and professional in every aspect.
+                            I expected that refinancing my mortgage was going to be a very unpleasant experience
+                            but I can honestly say that the actual process was easy and if I had any questions John Smith was there to answer my questions -
+                             at any hour of the day or night.</p>
+                             <a href="#">See More</a> -->
+                </div>
+            </div>
+            <div class="row">
+                
+                <div class="col-4"></div>
+                <div class="col-4"></div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+        <div class="row">
+                <mat-tab-group mat-align-tabs="center">
+                    <!-- <mat-tab label="Product Offer">
+                        <p class="pt-4"><strong>Great company and Loan Officer</strong></p>
+                        <p>howards271 from Woodcliff Lake, NJ <br />
+                        Everyone at ABC Company was pleasant,
+                        knowledgeable and professional in every aspect.
+                        I expected that refinancing my mortgage was going to be a very unpleasant experience
+                        but I can honestly say that the actual process was easy and if I had any questions John Smith was there to answer my questions -
+                         at any hour of the day or night.</p>
+                         <a href="#">See More</a>
+                    </mat-tab>
+                    <mat-tab label="Fee Structure">
+                        <div class="card">
+                            <div class="card-header primary-bg white-color">
+                              <h3 class="my-3 white-color">Loan Cost</h3>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">A. Origination Charges</h5>
+                              <mat-list role="list">
+                                <mat-list-item role="listitem" class="border-bottom border-primary primary-color"><p>Item 1</p></mat-list-item>
+                                <mat-list-item role="listitem" class="border-bottom border-primary primary-color"><p>Item 1</p></mat-list-item>
+                                <mat-list-item role="listitem" class="border-bottom border-primary primary-color"><p>Item 1</p></mat-list-item>
+                              </mat-list>
+                            </div>
+                          </div>
+                    </mat-tab> -->
+                    <mat-tab label="Requirements">
+                        <br>
+                        <div class="card">
+                            <div class="card-header primary-bg white-color">
+                              <h3 class="my-3 white-color">Questions</h3>
+                            </div>
+                            <div class="card-body">
+                              <mat-list role="list" *ngFor="let data of selectedPropertyandQuestions;let i = index">
+                                <h3>{{data.propertyType.title}}</h3>
+                                <div *ngFor="let form of data.forms;let j = index">
+                                    <mat-list-item role="listitem" class="border-bottom border-primary primary-color"><p>{{form.label}}</p></mat-list-item>
+                                </div>
+                              </mat-list>
+                            </div>
+                          </div>
+                    </mat-tab>
+                </mat-tab-group>
+        </div>
+    </div>
+</div>

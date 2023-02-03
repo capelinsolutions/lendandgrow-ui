@@ -1,0 +1,380 @@
+<div class="form-container">
+  <form class="" [formGroup]="borrowerForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="name"
+        placeholder="Name"
+        required
+      />
+      <mat-error
+        *ngIf="
+          borrowerForm.get('name')?.touched &&
+          borrowerForm.get('name').errors?.required
+        "
+      >
+        This field is required
+      </mat-error>
+      <mat-error
+        *ngIf="
+          borrowerForm.get('name')?.touched &&
+            borrowerForm.get('name').errors?.minlength;
+          else nameMaxLength
+        "
+      >
+        Minimum
+        {{ borrowerForm.get("name").errors?.minlength?.requiredLength }}
+        characters are required
+      </mat-error>
+      <ng-template #nameMaxLength>
+        <mat-error
+          *ngIf="
+            borrowerForm.get('name')?.touched &&
+              borrowerForm.get('name').errors?.maxlength;
+            else namePattern
+          "
+        >
+          Maximum
+          {{ borrowerForm.get("name").errors?.maxlength?.requiredLength }}
+          characters are required
+        </mat-error>
+      </ng-template>
+      <ng-template #namePattern>
+        <mat-error
+          *ngIf="
+            borrowerForm.get('name')?.touched &&
+            borrowerForm.get('name').errors?.pattern
+          "
+        >
+          This field can only contain alphabets
+        </mat-error>
+      </ng-template>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="email"
+        placeholder="Email"
+        required
+      />
+      <mat-error
+        *ngIf="
+          borrowerForm.get('email')?.touched &&
+          borrowerForm.get('email').errors?.required
+        "
+      >
+        This field is required
+      </mat-error>
+      <mat-error
+        *ngIf="
+          borrowerForm.get('email')?.touched &&
+          borrowerForm.get('email').errors?.pattern
+        "
+      >
+        Invalid email address
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input
+      [type]="hidePassword ? 'password' : 'text'"
+        matInput
+        formControlName="password"
+        placeholder="Password"
+        required
+      />
+      <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error
+        *ngIf="
+          borrowerForm.get('password')?.touched &&
+          borrowerForm.get('password').errors?.required
+        "
+      >
+        This field is required
+      </mat-error>
+      <mat-error
+        *ngIf="
+          borrowerForm.get('password')?.touched &&
+          borrowerForm.get('password').errors?.minlength;
+          else passwordMaxLength
+        "
+      >
+        Minimum
+        {{ borrowerForm.get("password").errors?.minlength?.requiredLength }}
+        characters are required
+      </mat-error>
+      <ng-template #passwordMaxLength>
+        <mat-error
+          *ngIf="
+            borrowerForm.get('password')?.touched &&
+            borrowerForm.get('password').errors?.maxlength;
+            else passwordPattern
+          "
+        >
+          Maximum
+          {{ borrowerForm.get("password").errors?.maxlength?.requiredLength }}
+          characters are required
+        </mat-error>
+      </ng-template>
+      <ng-template #passwordPattern>
+        <mat-error
+          *ngIf="
+            borrowerForm.get('password')?.touched &&
+            borrowerForm.get('password').errors?.pattern;
+          "
+        >
+        Password must include alphabet and number
+        </mat-error>
+      </ng-template>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Confirm Password</mat-label>
+      <input
+      [type]="hideConfirmPassword ? 'password' : 'text'"
+        matInput
+        formControlName="confirmPassword"
+        placeholder="Confirm Password"
+        required
+      />
+      <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error
+        *ngIf="
+          borrowerForm.get('confirmPassword')?.touched &&
+          borrowerForm.get('confirmPassword').errors?.required
+        "
+      >
+        This field is required
+      </mat-error>
+      <mat-error
+        *ngIf="
+          borrowerForm.get('confirmPassword')?.touched &&
+            borrowerForm.get('confirmPassword').errors?.minlength;
+           else confirmPasswordPattern
+        "
+      >
+        Minimum
+        {{ borrowerForm.get("confirmPassword").errors?.minlength?.requiredLength }}
+        characters are required
+      </mat-error>
+      
+      <ng-template #confirmPasswordMaxLength>
+        <mat-error
+          *ngIf="
+            borrowerForm.get('confirmPassword')?.touched &&
+              borrowerForm.get('confirmPassword').errors?.maxlength;
+            else confirmPasswordPattern
+          "
+        >
+          Maximum
+          {{ borrowerForm.get("confirmPassword").errors?.maxlength?.requiredLength }}
+          characters are required
+        </mat-error>
+      </ng-template>
+
+      <ng-template #confirmPasswordPattern>
+        <mat-error
+          *ngIf="
+            borrowerForm.get('confirmPassword')?.touched &&
+            borrowerForm.get('confirmPassword').errors?.pattern;
+            else confirmPasswordMatch
+          "
+        >
+          Password must include upper case, lower case and a digit
+        </mat-error>
+      </ng-template>
+
+      <ng-template #confirmPasswordMatch>
+        <mat-error *ngIf="f.confirmPassword?.touched && f.confirmPassword?.errors?.mustMatch">
+          Passsword and Confirm Password didn't match.
+        </mat-error>
+      </ng-template>
+
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Contact</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="contact"
+        placeholder="Contact"
+        required
+      />
+      <mat-error
+        *ngIf="
+          borrowerForm.get('contact')?.touched &&
+          borrowerForm.get('contact').errors?.required
+        "
+      >
+        This field is required
+      </mat-error>
+      <mat-error
+          *ngIf="
+          borrowerForm.get('contact')?.touched &&
+          borrowerForm.get('contact').errors?.minlength;
+             else contactMaxLength
+          "
+        >
+          Minimum
+          {{ borrowerForm.get("contact").errors?.minlength?.requiredLength }}
+          Numbers are required
+        </mat-error>
+        
+        <ng-template #contactMaxLength>
+          <mat-error
+            *ngIf="
+            borrowerForm.get('contact')?.touched &&
+            borrowerForm.get('contact').errors?.maxlength;
+              else contactPattern
+            "
+          >
+            Maximum
+            {{ borrowerForm.get("contact").errors?.maxlength?.requiredLength }}
+            Numbers are required
+          </mat-error>
+        </ng-template>
+        <ng-template #contactPattern>
+          <mat-error
+            *ngIf="
+              borrowerForm.get('contact')?.touched &&
+              borrowerForm.get('contact').errors?.pattern
+            "
+          >
+          Contact must be in US format ex: (+1-000-000-0000)
+          </mat-error>
+        </ng-template>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Address</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="address"
+        placeholder="Address"
+        required
+      />
+      <mat-error
+        *ngIf="
+          borrowerForm.get('address')?.touched &&
+          borrowerForm.get('address').errors?.required
+        "
+      >
+        This field is required
+      </mat-error>
+      <mat-error
+        *ngIf="
+          borrowerForm.get('address')?.touched &&
+            borrowerForm.get('address').errors?.minlength;
+          else addressMaxLength
+        "
+      >
+        Minimum
+        {{ borrowerForm.get("address").errors?.minlength?.requiredLength }}
+        characters are required
+      </mat-error>
+      <ng-template #addressMaxLength>
+        <mat-error
+          *ngIf="
+            borrowerForm.get('address')?.touched &&
+            borrowerForm.get('address').errors?.maxlength
+          "
+        >
+          Maximum
+          {{ borrowerForm.get("address").errors?.maxlength?.requiredLength }}
+          characters are required
+        </mat-error>
+      </ng-template>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Country</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="country"
+        placeholder="Country"
+        required
+      />
+      <mat-error
+        *ngIf="
+          borrowerForm.get('country')?.touched &&
+          borrowerForm.get('country').errors?.required
+        "
+      >
+        This field is required
+      </mat-error>
+      <mat-error
+        *ngIf="
+          borrowerForm.get('country')?.touched &&
+            borrowerForm.get('country').errors?.minlength;
+          else countryMaxLength
+        "
+      >
+        Minimum
+        {{ borrowerForm.get("country").errors?.minlength?.requiredLength }}
+        characters are required
+      </mat-error>
+      <ng-template #countryMaxLength>
+        <mat-error
+          *ngIf="
+            borrowerForm.get('country')?.touched &&
+            borrowerForm.get('country').errors?.maxlength
+          "
+        >
+          Maximum
+          {{ borrowerForm.get("country").errors?.maxlength?.requiredLength }}
+          characters are required
+        </mat-error>
+      </ng-template>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>City</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="city"
+        placeholder="City"
+        required
+      />
+      <mat-error
+        *ngIf="
+          borrowerForm.get('city')?.touched &&
+          borrowerForm.get('city').errors?.required
+        "
+      >
+        This field is required
+      </mat-error>
+      <mat-error
+        *ngIf="
+          borrowerForm.get('city')?.touched &&
+            borrowerForm.get('city').errors?.minlength;
+          else cityMaxLength
+        "
+      >
+        Minimum
+        {{ borrowerForm.get("city").errors?.minlength?.requiredLength }}
+        characters are required
+      </mat-error>
+      <ng-template #cityMaxLength>
+        <mat-error
+          *ngIf="
+            borrowerForm.get('city')?.touched &&
+            borrowerForm.get('city').errors?.maxlength
+          "
+        >
+          Maximum
+          {{ borrowerForm.get("city").errors?.maxlength?.requiredLength }}
+          characters are required
+        </mat-error>
+      </ng-template>
+    </mat-form-field>
+  </form>
+  <div class="btn-container text-center mt-4">
+    <button class="btn btn-primary" mat-raised-button (click)="onSubmit()" [class.disable-btn]="borrowerForm.invalid">
+      Sign up
+    </button>
+  </div>
+</div>

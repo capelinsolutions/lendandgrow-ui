@@ -1,0 +1,10 @@
+<div class="property-card text-center" [routerLink]="id" style="cursor: pointer;">
+    <div class="property-card-image" >
+        <img [src]="imageUrl ? imageUrl: '../../../assets/images/Villa1.jpg'" alt="PropertyImg">
+    </div>
+    <div class="property-card-details" *ngIf="!hideDetails">
+        <h3 class="py-2"><strong>{{ deal.title }}</strong></h3>
+        <h4 class="p" style="margin-top: -13px;">{{deal?.price | currency: '$'}}</h4>
+        <h4 class="p" style="margin-top: -13px;">{{deal?.address}} | {{ deal?.area}}</h4>
+    </div>
+</div>

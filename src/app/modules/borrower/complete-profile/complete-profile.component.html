@@ -1,0 +1,413 @@
+<form [formGroup]="borrowerPersonalInfo" class="form-container">
+  <ng-template matStepLabel>Personal Information</ng-template>
+
+  <mat-form-field class="example-full-width profile">
+    <!-- <mat-label>Profile Picture</mat-label> -->
+    <br>
+    <div class="profile-image">
+      <img [src]="imageURL ? imageURL: '../../../assets/images/icons/usericon.png'" class="lender-card-image"
+        alt="Profile Pic" matInput>
+    </div>
+    <div class="upd" hidden>
+      <input hidden="true" matInput />
+    </div>
+    <label class="remove-button btn btn-primary mx-1" (click)="removeImage()">
+      Remove Image
+    </label>
+    <label class="custom-file-upload btn btn-primary mx-1">
+      <input type="file" (change)="onFileSelected($event)" accept="image/png, image/jpg, image/jpeg" />
+      Upload Image
+    </label>
+    <mat-error *ngIf="
+    borrowerPersonalInfo.get('profilePicture')?.touched &&
+    borrowerPersonalInfo.get('profilePicture').errors?.required
+      ">
+      This field is required
+    </mat-error>
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Name</mat-label>
+    <input type="text" matInput formControlName="name" placeholder="Name" required />
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('name')?.touched &&
+          borrowerPersonalInfo.get('name').errors?.required
+            ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('name')?.touched &&
+          borrowerPersonalInfo.get('name').errors?.minlength;
+              else nameMaxLength
+            ">
+      Minimum
+      {{ borrowerPersonalInfo.get("name").errors?.minlength?.requiredLength }}
+      characters are required
+    </mat-error>
+    <ng-template #nameMaxLength>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('name')?.touched &&
+            borrowerPersonalInfo.get('name').errors?.maxlength;
+                else namePattern
+              ">
+        Maximum
+        {{
+        borrowerPersonalInfo.get("name").errors?.maxlength?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+    <ng-template #namePattern>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('name')?.touched &&
+            borrowerPersonalInfo.get('name').errors?.pattern
+              ">
+        This field can only contain alphabets
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="text" matInput formControlName="email" placeholder="Email" required />
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('email')?.touched &&
+          borrowerPersonalInfo.get('email').errors?.required
+            ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('email')?.touched &&
+          borrowerPersonalInfo.get('email').errors?.pattern
+            ">
+      Invalid email address
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input [type]="hide ? 'password' : 'text'" type="password" matInput formControlName="password"
+      placeholder="Password" required />
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('password')?.touched &&
+          borrowerPersonalInfo.get('password').errors?.required
+            ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('password')?.touched &&
+          borrowerPersonalInfo.get('password').errors?.minlength;
+              else passwordMaxLength
+            ">
+      Minimum
+      {{
+      borrowerPersonalInfo.get("password").errors?.minlength?.requiredLength
+      }}
+      characters are required
+    </mat-error>
+    <ng-template #passwordMaxLength>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('password')?.touched &&
+            borrowerPersonalInfo.get('password').errors?.maxlength;
+                else passwordPattern
+              ">
+        Maximum
+        {{
+        borrowerPersonalInfo.get("password").errors?.maxlength
+        ?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+    <ng-template #passwordPattern>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('password')?.touched &&
+            borrowerPersonalInfo.get('password').errors?.pattern
+              ">
+        Password must include upper case, lower case and a digit
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Contact</mat-label>
+    <input type="text" matInput formControlName="contact" placeholder="Contact" required />
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('contact')?.touched &&
+          borrowerPersonalInfo.get('contact').errors?.required
+            ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('contact')?.touched &&
+          borrowerPersonalInfo.get('contact').errors?.minlength;
+             else contactMaxLength
+          ">
+      Minimum
+      {{ borrowerPersonalInfo.get("contact").errors?.minlength?.requiredLength }}
+      Numbers are required
+    </mat-error>
+    <ng-template #contactMaxLength>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('contact')?.touched &&
+            borrowerPersonalInfo.get('contact').errors?.maxlength;
+              else contactPattern
+            ">
+        Maximum
+        {{ borrowerPersonalInfo.get("contact").errors?.maxlength?.requiredLength }}
+        Numbers are required
+      </mat-error>
+    </ng-template>
+    <ng-template #contactPattern>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('contact')?.touched &&
+            borrowerPersonalInfo.get('contact').errors?.pattern
+            ">
+        Contact must include digits and be in US format
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Address</mat-label>
+    <input type="text" matInput formControlName="address" placeholder="Address" required />
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('address')?.touched &&
+          borrowerPersonalInfo.get('address').errors?.required
+            ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('address')?.touched &&
+          borrowerPersonalInfo.get('address').errors?.minlength;
+              else addressMaxLength
+            ">
+      Minimum
+      {{
+      borrowerPersonalInfo.get("address").errors?.minlength?.requiredLength
+      }}
+      characters are required
+    </mat-error>
+    <ng-template #addressMaxLength>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('address')?.touched &&
+                borrowerPersonalInfo.get('address').errors?.maxlength
+              ">
+        Maximum
+        {{
+        borrowerPersonalInfo.get("address").errors?.maxlength
+        ?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Country</mat-label>
+    <input type="text" matInput formControlName="country" placeholder="Country" required />
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('country')?.touched &&
+          borrowerPersonalInfo.get('country').errors?.required
+            ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('country')?.touched &&
+          borrowerPersonalInfo.get('country').errors?.minlength;
+              else countryMaxLength
+            ">
+      Minimum
+      {{
+      borrowerPersonalInfo.get("country").errors?.minlength?.requiredLength
+      }}
+      characters are required
+    </mat-error>
+    <ng-template #countryMaxLength>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('country')?.touched &&
+            borrowerPersonalInfo.get('country').errors?.maxlength
+              ">
+        Maximum
+        {{
+        borrowerPersonalInfo.get("country").errors?.maxlength
+        ?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>City</mat-label>
+    <input type="text" matInput formControlName="city" placeholder="City" required />
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('city')?.touched &&
+          borrowerPersonalInfo.get('city').errors?.required
+            ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('city')?.touched &&
+          borrowerPersonalInfo.get('city').errors?.minlength;
+              else cityMaxLength
+            ">
+      Minimum
+      {{ borrowerPersonalInfo.get("city").errors?.minlength?.requiredLength }}
+      characters are required
+    </mat-error>
+    <ng-template #cityMaxLength>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('city')?.touched &&
+            borrowerPersonalInfo.get('city').errors?.maxlength
+              ">
+        Maximum
+        {{
+        borrowerPersonalInfo.get("city").errors?.maxlength?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Telephone</mat-label>
+    <input type="text" matInput formControlName="telephone" placeholder="telephone" required />
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('telephone')?.touched &&
+          borrowerPersonalInfo.get('telephone').errors?.required
+            ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('telephone')?.touched &&
+          borrowerPersonalInfo.get('telephone').errors?.minlength;
+              else telephoneMaxLength
+            ">
+      Minimum
+      {{ borrowerPersonalInfo.get("telephone").errors?.minlength?.requiredLength }}
+      characters are required
+    </mat-error>
+    <ng-template #telephoneMaxLength>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('telephone')?.touched &&
+            borrowerPersonalInfo.get('telephone').errors?.maxlength
+            else telephonePattern
+              ">
+        Maximum
+        {{
+        borrowerPersonalInfo.get("telephone").errors?.maxlength?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+    <ng-template #telephonePattern>
+      <mat-error *ngIf="
+        borrowerPersonalInfo.get('telephone')?.touched &&
+        borrowerPersonalInfo.get('telephone').errors?.pattern
+        ">
+        Telephone must include digits and be in US format
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Date of birth</mat-label>
+    <input matInput [matDatepicker]="picker1" autocomplete="off" formControlName="dob">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1 color="primary"></mat-datepicker>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('dob')?.touched &&
+          borrowerPersonalInfo.get('dob').errors?.required
+            ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('dob')?.touched &&
+          borrowerPersonalInfo.get('dob').errors?.minlength;
+              else dobMaxLength
+            ">
+      Minimum
+      {{ borrowerPersonalInfo.get("dob").errors?.minlength?.requiredLength }}
+      characters are required
+    </mat-error>
+    <ng-template #dobMaxLength>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('dob')?.touched &&
+            borrowerPersonalInfo.get('dob').errors?.maxlength
+              ">
+        Maximum
+        {{
+        borrowerPersonalInfo.get("dob").errors?.maxlength?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Zip</mat-label>
+    <input type="text" matInput formControlName="zip" placeholder="zip" required />
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('zip')?.touched &&
+          borrowerPersonalInfo.get('zip').errors?.required
+            ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('zip')?.touched &&
+          borrowerPersonalInfo.get('zip').errors?.minlength;
+              else zipMaxLength
+            ">
+      Minimum
+      {{ borrowerPersonalInfo.get("zip").errors?.minlength?.requiredLength }}
+      characters are required
+    </mat-error>
+    <ng-template #zipMaxLength>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('zip')?.touched &&
+            borrowerPersonalInfo.get('zip').errors?.maxlength
+              ">
+        Maximum
+        {{
+        borrowerPersonalInfo.get("zip").errors?.maxlength?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>State</mat-label>
+    <input type="text" matInput formControlName="state" placeholder="state" required />
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('state')?.touched &&
+          borrowerPersonalInfo.get('state').errors?.required
+            ">
+      This field is required
+    </mat-error>
+    <mat-error *ngIf="
+          borrowerPersonalInfo.get('state')?.touched &&
+          borrowerPersonalInfo.get('state').errors?.minlength;
+              else stateMaxLength
+            ">
+      Minimum
+      {{ borrowerPersonalInfo.get("state").errors?.minlength?.requiredLength }}
+      characters are required
+    </mat-error>
+    <ng-template #stateMaxLength>
+      <mat-error *ngIf="
+            borrowerPersonalInfo.get('state')?.touched &&
+            borrowerPersonalInfo.get('state').errors?.maxlength
+              ">
+        Maximum
+        {{
+        borrowerPersonalInfo.get("state").errors?.maxlength?.requiredLength
+        }}
+        characters are required
+      </mat-error>
+    </ng-template>
+  </mat-form-field>
+  <div class="btn-container text-center mt-4">
+    <button class="btn btn-primary mx-1 cancel" mat-raised-button (click)="close()">
+      Cancel
+    </button>
+    <button class="btn btn-primary mx-1" mat-raised-button [class.disable-btn]="borrowerPersonalInfo?.invalid"
+      (click)="submit()">
+      Submit
+    </button>
+  </div>
+</form>

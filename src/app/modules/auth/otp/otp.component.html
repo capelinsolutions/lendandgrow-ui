@@ -1,0 +1,29 @@
+<div class="otp-container text-center">
+  <h3 class="mb-5">Verify your account</h3>
+  <p class="my-5">OTP has been sent to your email address</p>
+  <ng-otp-input
+    #ngOtpInput
+    (onInputChange)="onOtpChange($event)"
+    [config]="config"
+  ></ng-otp-input>
+
+  <div class="btn-container mt-5">
+    <button
+      class="btn btn-primary"
+      mat-raised-button
+      (click)="onSubmit()"
+      [class.disable-btn]="!otp || otp.length != 6"
+    >
+      Submit
+    </button>
+  </div>
+  <br>
+  <ng-container>
+    <h3 *ngIf="showTimer">{{ timer }}</h3>
+    <br />
+    <p *ngIf="!showTimer">
+      Haven't received the E-mail yet?
+      <strong (click)="resendOtp()" class="cursor-pointer"><u>Resend</u></strong>
+    </p>
+  </ng-container>
+</div>

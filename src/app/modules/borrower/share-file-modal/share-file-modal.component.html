@@ -1,0 +1,40 @@
+<form [formGroup]="documentInfo" class="form-container">
+        <ng-container style="text-align: center;"><h2 style="text-align: center;">Document Information</h2></ng-container>
+        <br>
+        <section class="files-list-container mt-5">
+            <ul *ngFor="let document of valueName;let i = index;">
+              <li style="list-style: none">
+                <div style="display:flex; justify-content:space-between;align-items:center">
+                  <div style="display:flex;align-items:center">
+                    <mat-icon style="margin-top:15px;color: red;" matListAvatar>picture_as_pdf</mat-icon>
+                    <div style="display:flex; flex-direction:column">
+                      <div style="margin-top:23px;margin-left: 20px;">
+                        <h3 matLine> {{document}}</h3>
+                      </div>
+                      <div style="margin-top:-45px;margin-left: 420px;text-align: left;">
+                        <p matLine>
+                          <mat-checkbox [checked]='readChecked[i]' (change)="onChange($event,document,accessTypeRead);selected = i;" [value]="accessTypeRead">{{accessTypeRead}}</mat-checkbox>
+                        </p>
+                      </div>
+                      <div style="margin-top:-36px;margin-left: 490px;text-align: left;">
+                        <p matLine>
+                          <mat-checkbox [checked]='writeChecked[i]' (change)="onChange($event,document,accessTypeDownload);selected = i" [value]="accessTypeDownload">{{accessTypeDownload}}</mat-checkbox>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+              </li>
+            </ul>
+              <br>
+            <div class="btn-container text-center mt-4">
+              <button class="btn btn-primary mx-1" mat-raised-button (click)="close()">
+                Cancel
+              </button>
+              <button class="btn btn-primary mx-1" mat-raised-button [class.disable-btn]="documentInfo.invalid" (click)="onSubmit()">
+                Share
+              </button>
+            </div>
+        </section>
+        
+      </form>
